@@ -4,7 +4,7 @@
 public class Tests {
     public static void main(String[] args) {
 
-        ResultMatrix m = new ResultMatrix(25, 9);
+        ResultMatrix m = new ResultMatrix(50, 9);
         m.afficheResultats();
     }
 }
