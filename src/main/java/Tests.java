@@ -1,5 +1,7 @@
 import arrays.ResultArray;
+import arrays.UninomArray;
 import tables.ResultMatrix;
+import tables.UninomUnTour;
 
 import java.util.ArrayList;
 
@@ -9,10 +11,18 @@ import java.util.ArrayList;
 public class Tests {
     public static void main(String[] args) {
 
-        //ResultMatrix m = new ResultMatrix(50, 9);
-        //m.afficheResultats();
+        int nbVotants = 200000;
+        int nbCandidats = 100;
 
-        ResultArray m = new ResultArray(10, 3);
-        m.afficheResultats();
+        System.out.println("Lancement test avec " + nbVotants + " votants et " + nbCandidats + " candidats.");
+        System.out.println();
+
+        ResultMatrix m = new ResultMatrix(nbVotants, nbCandidats);
+
+        ResultArray a = new ResultArray(nbVotants, nbCandidats);
+
+        UninomArray.printResult(a);
+        System.out.println("");
+        UninomUnTour.printResult(m);
     }
 }
