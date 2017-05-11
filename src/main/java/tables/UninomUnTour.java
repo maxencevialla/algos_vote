@@ -1,10 +1,14 @@
+package tables;
+
+import tables.ResultMatrix;
+
 /**
  * Created by maxence on 10/05/17.
  */
 public class UninomUnTour {
 
     public static void main(String[] args) {
-        ResultMatrix result = new ResultMatrix(5000000, 4);
+        ResultMatrix result = new ResultMatrix(5000000, 12);
 
         Integer[][] resultMatrix = result.resultats;
 
