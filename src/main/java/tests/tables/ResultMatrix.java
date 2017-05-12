@@ -1,4 +1,4 @@
-package tables;
+package tests.tables;
 
 import java.util.Random;
 

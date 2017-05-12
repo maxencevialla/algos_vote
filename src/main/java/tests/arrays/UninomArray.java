@@ -1,13 +1,11 @@
-package arrays;
-
-import java.util.ArrayList;
+package tests.arrays;
 
 /**
  * Created by maxence on 11/05/17.
  */
 public class UninomArray {
 
-    public static void printResult(ResultArray a) {
+    public static long printResult(ResultTestArray a) {
 
         Integer[] premieresPlaces = new Integer[a.nbCandidats];
 
@@ -31,9 +29,10 @@ public class UninomArray {
             }
         }
 
-        System.out.println("Vainqueur trouvé via arrays en " + (System.currentTimeMillis() - start) + "ms");
-        System.out.println("Vainqueur : candidat n°" + numCandidatMaxPremieresPlaces + " avec " + maxPremieresPlaces + " voix.");
-
+        start = System.currentTimeMillis() - start;
+        //System.out.println("Vainqueur trouvé via tests.arrays en " + (System.currentTimeMillis() - start) + "ms");
+        //System.out.println("Vainqueur : candidat n°" + numCandidatMaxPremieresPlaces + " avec " + maxPremieresPlaces + " voix.");
+        return start;
     }
 
 }

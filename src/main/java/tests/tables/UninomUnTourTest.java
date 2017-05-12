@@ -1,14 +1,11 @@
-package tables;
-
-import arrays.ResultArray;
-import tables.ResultMatrix;
+package tests.tables;
 
 /**
  * Created by maxence on 10/05/17.
  */
-public class UninomUnTour {
+public class UninomUnTourTest {
 
-    public static void printResult(ResultMatrix m) {
+    public static long printResult(ResultMatrix m) {
         Integer[][] resultMatrix = m.resultats;
 
         Integer[] premieresPlaces = new Integer[m.nbCandidats];
@@ -34,8 +31,10 @@ public class UninomUnTour {
             premieresPlaces[i] = tmp;
         }
 
-        System.out.println("Vainqueur trouvé via tableaux en " + (System.currentTimeMillis() - start) + "ms");
-        System.out.println("Vainqueur : candidat n°" + numCandidatMaxPremieresPlaces + " avec " + maxPremieresPlaces + " voix.");
+        start = System.currentTimeMillis() - start;
+        //System.out.println("Vainqueur trouvé via tableaux en " + (System.currentTimeMillis() - start) + "ms");
+        //System.out.println("Vainqueur : candidat n°" + numCandidatMaxPremieresPlaces + " avec " + maxPremieresPlaces + " voix.");
 
+        return start;
     }
 }

@@ -1,4 +1,4 @@
-package arrays;
+package tests.arrays;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -6,13 +6,13 @@ import java.util.Random;
 /**
  * Created by maxence on 11/05/17.
  */
-public class ResultArray {
+public class ResultTestArray {
     int nbCandidats;
     int nbVotants;
 
     ArrayList<ArrayList<Integer>> resultats;
 
-    public ResultArray(int nbVotants, int nbCandidats) {
+    public ResultTestArray(int nbVotants, int nbCandidats) {
         this.nbVotants = nbVotants;
         this.nbCandidats = nbCandidats;
         this.resultats = new ArrayList<ArrayList<Integer>>();
