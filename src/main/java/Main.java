@@ -10,7 +10,7 @@ import methodes.UninomUnTour;
 public class Main {
 
     public static void main(String[] args) {
-        ResultArray r = new ResultArray(4, 400);
+        ResultArray r = new ResultArray(8, 4000);
 
         long start = System.currentTimeMillis();
         Resultat res1Tour = UninomUnTour.getResult(r);
