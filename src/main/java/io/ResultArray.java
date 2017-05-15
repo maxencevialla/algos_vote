@@ -1,3 +1,5 @@
+package io;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -15,7 +17,7 @@ public class ResultArray {
     }
 
     /*
-    Créé un ResultArray avec un tableau de votes aléatoires pour nbCandidats et nbVotants
+    Créé un io.ResultArray avec un tableau de votes aléatoires pour nbCandidats et nbVotants
      */
     public ResultArray(int nbCandidats, int nbVotants) {
         this();
@@ -41,7 +43,7 @@ public class ResultArray {
     }
 
     /*
-    Créé un ResultArray à partir d'un tableau de votes
+    Créé un io.ResultArray à partir d'un tableau de votes
      */
     public ResultArray(ArrayList<ArrayList<Integer>> votes) {
         this();

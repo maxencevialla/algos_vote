@@ -1,3 +1,5 @@
+package io;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +13,7 @@ import java.util.Map;
  */
 public class Resultat {
 
-    private List<Integer> classement; //Représente le classement des candidats, chacun étant représenté par son numéro dans l'entrée ResultArray
+    private List<Integer> classement; //Représente le classement des candidats, chacun étant représenté par son numéro dans l'entrée io.ResultArray
     private String nomMethode; //Méthode de vote utilisée pour réaliser ce classement
 
     public Resultat(List<Integer> classement, String nomMethode) {

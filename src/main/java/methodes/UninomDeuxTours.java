@@ -1,12 +1,14 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
+package methodes;
+
+import io.ResultArray;
+import io.Resultat;
+
 import java.util.List;
 
 /**
  * Created by maxence on 12/05/17.
  */
-public class UninomDeuxTours {
+public class UninomDeuxTours extends Methode {
 
    public static Resultat getResult(ResultArray r) {
         Resultat res = UninomUnTour.getResult(r);
@@ -29,10 +31,10 @@ public class UninomDeuxTours {
        }
 
        List<Integer> classementSecondTour = classementPremierTour;
-       System.out.println("Premier : " + nbVotesPourPremier + " voix.");
-       System.out.println("Second : " + nbVotesPourSecond + " voix.");
+       //System.out.println("Premier : " + nbVotesPourPremier + " voix.");
+       //System.out.println("Second : " + nbVotesPourSecond + " voix.");
 
-       //On inverse le premier et le econd du classement du premier tour si besoin
+       //On inverse le premier et le second du classement du premier tour si besoin
        if(nbVotesPourPremier > nbVotesPourSecond) {
            classementSecondTour.set(0, second);
            classementSecondTour.set(1, premier);
