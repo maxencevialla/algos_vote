@@ -4,18 +4,28 @@
 public class Main {
 
     public static void main(String[] args) {
-        ResultArray r = new ResultArray(3, 1000000);
+        ResultArray r = new ResultArray(2, 25);
 
-        //r.afficheVotes();
-        long start  = System.currentTimeMillis();
-        Resultat result = UninomUnTour.getResult(r);
-        System.out.println("Résultat complet en " + (System.currentTimeMillis() - start) + "ms.");
+        long start = System.currentTimeMillis();
+        Resultat res1Tour = UninomUnTour.getResult(r);
 
-        for(Integer i : result.getClassement().keySet()) {
-            System.out.println("Candidat n°" +  result.getClassement().get(i) + " : " + i + " voix.");
+        System.out.println("Résultat 1 tour calculé en " + (System.currentTimeMillis() - start) + "ms.");
+
+        start = System.currentTimeMillis();
+        Resultat res2Tours = UninomDeuxTours.getResult(r);
+
+        System.out.println("Résultat 2 tours calculé en " + (System.currentTimeMillis() - start) + "ms.");
+
+        System.out.println();
+
+        for(int i = 0 ; i < res1Tour.getClassement().size() ; i++) {
+            System.out.print(res1Tour.getClassement().get(i) + " ");
         }
 
         System.out.println();
-        System.out.println("NbGagnant = " + result.getNbGagnant());
+
+        for(int i = 0 ; i < res1Tour.getClassement().size() ; i++) {
+            System.out.print(res2Tours.getClassement().get(i) + " ");
+        }
     }
 }

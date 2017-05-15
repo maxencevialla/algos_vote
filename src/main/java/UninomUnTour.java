@@ -12,34 +12,26 @@ public class UninomUnTour {
             premieresPlaces[i] = 0;
         }
 
-        int maxPremieresPlaces = 0, numCandidatMaxPremieresPlaces = -1;
-
         //On parcourt les candidats
         for(int i = 0 ; i < r.getNbVotants() ; i++) {
             premieresPlaces[r.getVotes().get(i).indexOf(1)]++;
         }
 
-        for(int i = 0 ; i < r.getNbCandidats() ; i++) {
-            if(premieresPlaces[i] > maxPremieresPlaces) {
-                maxPremieresPlaces = premieresPlaces[i];
-                numCandidatMaxPremieresPlaces = i;
-            }
+        //On place les couples <candidat, nombreDePremieresPlaces> dans une treemap classée par nb de voix
+        Map<Integer, Integer> mapClassement = new TreeMap<Integer, Integer>(Collections.<Integer>reverseOrder());
+        for(int i = 0 ; i < premieresPlaces.length ; i++) {
+            mapClassement.put(premieresPlaces[i], i);
         }
 
-        Resultat res = new Resultat(numCandidatMaxPremieresPlaces, convertResToMap(premieresPlaces));
+        List<Integer> resultList = new ArrayList<Integer>();
 
+        for(Integer i : mapClassement.keySet()) {
+            System.out.println("Candidat n°" + mapClassement.get(i) + " : " + i + " voix.");
+            resultList.add(mapClassement.get(i));
+        }
 
+        Resultat res = new Resultat(resultList, UninomUnTour.class.getName());
 
         return res;
-    }
-
-    public static Map convertResToMap(Integer[] t) {
-        Map<Integer, Integer> m = new TreeMap<Integer, Integer>();
-
-        for(int i = 0 ; i < t.length ; i++) {
-            m.put(t[i], i);
-        }
-
-        return m;
     }
 }

@@ -1,40 +1,42 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by maxence on 12/05/17.
+ *
+ *
+ * Représente le résultat du sondage, qui sera utilisé par le serveur
+ *
  */
 public class Resultat {
 
-    private int nbGagnant;
-    private Map<Integer, Integer> classement;
+    private List<Integer> classement; //Représente le classement des candidats, chacun étant représenté par son numéro dans l'entrée ResultArray
+    private String nomMethode; //Méthode de vote utilisée pour réaliser ce classement
 
-    public Resultat() {}
-
-    public Resultat(int nbGagnant) {
-        this();
-        this.nbGagnant = nbGagnant;
-    }
-
-    public Resultat(int nbGagnant, Map<Integer, Integer> classement) {
-        this();
+    public Resultat(List<Integer> classement, String nomMethode) {
         this.classement = classement;
-        this.nbGagnant = nbGagnant;
+        this.nomMethode = nomMethode;
     }
 
-    public int getNbGagnant() {
-        return nbGagnant;
+    @Override
+    public String toString() {
+        return "Numéro du vainqueur : " + this.classement.get(0) + " avec méthode " + this.nomMethode;
     }
 
-    public void setNbGagnant(int nbGagnant) {
-        this.nbGagnant = nbGagnant;
-    }
-
-    public Map<Integer, Integer> getClassement() {
+    public List<Integer> getClassement() {
         return classement;
     }
 
-    public void setClassement(Map<Integer, Integer> classement) {
+    public void setClassement(List<Integer> classement) {
         this.classement = classement;
+    }
+
+    public String getNomMethode() {
+        return nomMethode;
+    }
+
+    public void setNomMethode(String nomMethode) {
+        this.nomMethode = nomMethode;
     }
 }
