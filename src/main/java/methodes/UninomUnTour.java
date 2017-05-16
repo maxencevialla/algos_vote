@@ -6,10 +6,23 @@ import io.Resultat;
 import java.util.*;
 
 /**
- * Created by maxence on 12/05/17.
+ * Created by maxence on 16/05/17.
  */
 public class UninomUnTour extends Methode {
-    public static Resultat getResult(ResultArray r) {
+    private static UninomUnTour ourInstance = new UninomUnTour();
+
+    public static UninomUnTour getInstance() {
+        return ourInstance;
+    }
+
+    private UninomUnTour() {
+    }
+
+    public Resultat getResult(ResultArray r) {
+
+        if(!checkNumberOfCandidats(r.getNbCandidats())) {
+            return null;
+        }
 
         Integer[] premieresPlaces = new Integer[r.getNbCandidats()];
 
@@ -35,7 +48,7 @@ public class UninomUnTour extends Methode {
             resultList.add(mapClassement.get(i));
         }
 
-        Resultat res = new Resultat(resultList, UninomUnTour.class.getName());
+        Resultat res = new Resultat(resultList, UninomUnTour.class.getSimpleName());
 
         return res;
     }

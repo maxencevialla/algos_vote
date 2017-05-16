@@ -6,11 +6,23 @@ import io.Resultat;
 import java.util.*;
 
 /**
- * Created by maxence on 15/05/17.
+ * Created by maxence on 16/05/17.
  */
 public class Borda extends Methode {
+    private static Borda ourInstance = new Borda();
 
-    public static Resultat getResult(ResultArray r) {
+    public static Borda getInstance() {
+        return ourInstance;
+    }
+
+    private Borda() {
+    }
+
+    public Resultat getResult(ResultArray r) {
+
+        if(!checkNumberOfCandidats(r.getNbCandidats())) {
+            return null;
+        }
 
         Integer[] nbVoix = new Integer[r.getNbCandidats()];
 
@@ -37,7 +49,7 @@ public class Borda extends Methode {
             resultList.add(mapClassement.get(i));
         }
 
-        Resultat res = new Resultat(resultList, UninomUnTour.class.getName());
+        Resultat res = new Resultat(resultList, Borda.class.getSimpleName());
 
         return res;
     }
