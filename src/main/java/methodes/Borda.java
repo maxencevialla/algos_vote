@@ -1,6 +1,6 @@
 package methodes;
 
-import io.ResultArray;
+import io.Urne;
 import io.Resultat;
 
 import java.util.*;
@@ -18,7 +18,7 @@ public class Borda extends Methode {
     private Borda() {
     }
 
-    public Resultat getResult(ResultArray r) {
+    public Resultat getResult(Urne r) {
 
         if(!checkNumberOfCandidats(r.getNbCandidats())) {
             return null;
@@ -37,7 +37,7 @@ public class Borda extends Methode {
         return res;
     }
 
-    private Map<Integer, Integer> getNbPoints(ResultArray r) {
+    private Map<Integer, Integer> getNbPoints(Urne r) {
         Integer[] nbVoix = new Integer[r.getNbCandidats()];
 
         for(int i = 0 ; i < r.getNbCandidats() ; i++) {

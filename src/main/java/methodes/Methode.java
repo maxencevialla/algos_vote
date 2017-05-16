@@ -1,6 +1,6 @@
 package methodes;
 
-import io.ResultArray;
+import io.Urne;
 import io.Resultat;
 
 /**
@@ -8,7 +8,7 @@ import io.Resultat;
  */
 public abstract class Methode {
 
-    public abstract Resultat getResult(ResultArray r);
+    public abstract Resultat getResult(Urne r);
 
     public static boolean checkNumberOfCandidats(int nbCandidats) {
         if(nbCandidats < 2) {
@@ -17,7 +17,7 @@ public abstract class Methode {
         return true;
     }
 
-    public void printAndTimeResult(ResultArray r) {
+    public void printAndTimeResult(Urne r) {
         long start = System.currentTimeMillis();
         Resultat res = getResult(r);
 

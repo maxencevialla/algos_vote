@@ -25,7 +25,12 @@ public class Resultats {
         bonVainqueurTrouve = false;
     }
 
-    public void getAllResults(ResultArray r) {
+    /**
+     * Lance chaque méthode de vote disponible sur le paramètre et ajoute le Résultat à l'attributs mesResultats
+     *
+     * @param r : Données de votes à traiter
+     */
+    public void getAllResults(Urne r) {
         mesResultats.add(UninomUnTour.getInstance().getResult(r));
         mesResultats.add(UninomDeuxTours.getInstance().getResult(r));
         mesResultats.add(Borda.getInstance().getResult(r));

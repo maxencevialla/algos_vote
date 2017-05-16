@@ -1,6 +1,6 @@
 package methodes;
 
-import io.ResultArray;
+import io.Urne;
 import io.Resultat;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public class UninomDeuxTours extends Methode {
     private UninomDeuxTours() {
     }
 
-    public Resultat getResult(ResultArray r) {
+    public Resultat getResult(Urne r) {
 
         if(!checkNumberOfCandidats(r.getNbCandidats())) {
             return null;

@@ -1,5 +1,7 @@
 package io;
 
+import exceptions.WrongResultArrayException;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -10,21 +12,24 @@ import java.util.Random;
  * Il contient la liste des classements des candidats par chacun des votants
  *
  */
-public class ResultArray {
+public class Urne {
 
     private ArrayList<ArrayList<Integer>> votes;
     private int nbCandidats;
     private int nbVotants;
     private int numCandidatPref;
 
-    private ResultArray() {
+    private Urne() {
         this.votes = new ArrayList<ArrayList<Integer>>();
     }
 
-    /*
-    Créé un io.ResultArray avec un tableau de votes aléatoires pour nbCandidats et nbVotants
+    /**
+     * Créé un tableau de résultats aléatoires
+     *
+     * @param nbCandidats
+     * @param nbVotants
      */
-    public ResultArray(int nbCandidats, int nbVotants) {
+    public Urne(int nbCandidats, int nbVotants) {
         this();
         this.nbCandidats = nbCandidats;
         this.nbVotants = nbVotants;
@@ -52,13 +57,16 @@ public class ResultArray {
      *
      * @param votes : contient tous les bulletins à traiter
      *              Chaque arraylist "interne" contient l'ordre des choix d'un votant
+     * @throws WrongResultArrayException : renvoit une exception si la stucutre de l'array votes n'est pas celle attendue
      */
-    public ResultArray(ArrayList<ArrayList<Integer>> votes) {
+    public Urne(ArrayList<ArrayList<Integer>> votes) throws WrongResultArrayException {
         this();
         this.votes = votes;
 
         this.nbVotants = votes.size();
         this.nbCandidats = votes.get(0).size();
+
+        this.checkStructure();
     }
 
     public void afficheVotes() {
@@ -70,20 +78,16 @@ public class ResultArray {
         }
     }
 
-    //TODO
-    /*public boolean checkStructure() {
+    public void checkStructure() throws WrongResultArrayException {
 
         for(int i = 0 ; i < nbVotants ; i++){
             for(int j = 0 ; j < nbCandidats ; j++) {
                 if(this.getVotes().indexOf(j+1) == -1) {
-                    return false;
+                    throw new WrongResultArrayException("ResultArray entré non valide");
                 }
             }
         }
-
-
-        return true;
-    }*/
+    }
 
     public ArrayList<ArrayList<Integer>> getVotes() {
         return votes;

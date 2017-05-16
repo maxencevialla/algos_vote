@@ -1,11 +1,6 @@
-import io.ResultArray;
+import io.Urne;
 import io.Resultat;
 import io.Resultats;
-import methodes.Borda;
-import methodes.UninomDeuxTours;
-import methodes.UninomUnTour;
-
-import java.util.List;
 
 /**
  * Created by maxence on 12/05/17.
@@ -13,8 +8,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        ResultArray r = new ResultArray(5, 40);
-
+        Urne r = new Urne(5, 40);
 //        Borda.getInstance().printAndTimeResult(r);
 //        UninomUnTour.getInstance().printAndTimeResult(r);
 //        UninomDeuxTours.getInstance().printAndTimeResult(r);
