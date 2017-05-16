@@ -5,15 +5,20 @@ import java.util.Random;
 
 /**
  * Created by maxence on 12/05/17.
+ *
+ * Objet fourni en entrée de chacune des méthodes de vote
+ * Il contient la liste des classements des candidats par chacun des votants
+ *
  */
 public class ResultArray {
 
     private ArrayList<ArrayList<Integer>> votes;
     private int nbCandidats;
     private int nbVotants;
+    private int numCandidatPref;
 
-    public ResultArray() {
-        votes = new ArrayList<ArrayList<Integer>>();
+    private ResultArray() {
+        this.votes = new ArrayList<ArrayList<Integer>>();
     }
 
     /*
@@ -38,12 +43,15 @@ public class ResultArray {
                 //System.out.println("Add " + myRand +" to this array : " + line.toString());
                 line.add(myRand);
             }
+            //System.out.println("Add " + line.toString() + " to this array : " + this.votes.toString());
             this.votes.add(line);
         }
     }
 
-    /*
-    Créé un io.ResultArray à partir d'un tableau de votes
+    /**
+     *
+     * @param votes : contient tous les bulletins à traiter
+     *              Chaque arraylist "interne" contient l'ordre des choix d'un votant
      */
     public ResultArray(ArrayList<ArrayList<Integer>> votes) {
         this();
@@ -62,11 +70,26 @@ public class ResultArray {
         }
     }
 
+    //TODO
+    /*public boolean checkStructure() {
+
+        for(int i = 0 ; i < nbVotants ; i++){
+            for(int j = 0 ; j < nbCandidats ; j++) {
+                if(this.getVotes().indexOf(j+1) == -1) {
+                    return false;
+                }
+            }
+        }
+
+
+        return true;
+    }*/
+
     public ArrayList<ArrayList<Integer>> getVotes() {
         return votes;
     }
 
-    public void setVotes(ArrayList<ArrayList<Integer>> votes) {
+    private void setVotes(ArrayList<ArrayList<Integer>> votes) {
         this.votes = votes;
     }
 
@@ -74,7 +97,7 @@ public class ResultArray {
         return nbCandidats;
     }
 
-    public void setNbCandidats(int nbCandidats) {
+    private void setNbCandidats(int nbCandidats) {
         this.nbCandidats = nbCandidats;
     }
 
@@ -82,7 +105,11 @@ public class ResultArray {
         return nbVotants;
     }
 
-    public void setNbVotants(int nbVotants) {
+    private void setNbVotants(int nbVotants) {
         this.nbVotants = nbVotants;
     }
+
+    public int getNumCandidatPref() { return numCandidatPref; }
+
+    private void setNumCandidatPref(int numCandidatPref) { this.numCandidatPref = numCandidatPref; }
 }

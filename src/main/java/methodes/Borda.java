@@ -24,6 +24,20 @@ public class Borda extends Methode {
             return null;
         }
 
+        Map<Integer, Integer> mapClassement = getNbPoints(r);
+
+        List<Integer> resultList = new ArrayList<Integer>();
+
+        for(Integer i : mapClassement.keySet()) {
+            resultList.add(mapClassement.get(i));
+        }
+
+        Resultat res = new Resultat(resultList, Borda.class.getSimpleName());
+
+        return res;
+    }
+
+    private Map<Integer, Integer> getNbPoints(ResultArray r) {
         Integer[] nbVoix = new Integer[r.getNbCandidats()];
 
         for(int i = 0 ; i < r.getNbCandidats() ; i++) {
@@ -43,14 +57,6 @@ public class Borda extends Methode {
             mapClassement.put(nbVoix[i], i);
         }
 
-        List<Integer> resultList = new ArrayList<Integer>();
-
-        for(Integer i : mapClassement.keySet()) {
-            resultList.add(mapClassement.get(i));
-        }
-
-        Resultat res = new Resultat(resultList, Borda.class.getSimpleName());
-
-        return res;
+        return mapClassement;
     }
 }

@@ -21,12 +21,16 @@ public abstract class Methode {
         long start = System.currentTimeMillis();
         Resultat res = getResult(r);
 
-        System.out.println(res.getNomMethode() + " calculé en " + (System.currentTimeMillis() - start) + "ms.");
+        if(res == null) {
+            return;
+        }
 
-        System.out.println();
+        System.out.println(res.getNomMethode() + " calculé en " + (System.currentTimeMillis() - start) + "ms.");
 
         for(int i = 0 ; i < res.getClassement().size() ; i++) {
             System.out.print(res.getClassement().get(i) + " ");
         }
+
+        System.out.println();
     }
 }
