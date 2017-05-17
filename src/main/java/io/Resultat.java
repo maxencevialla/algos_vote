@@ -1,8 +1,6 @@
 package io;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by maxence on 12/05/17.
@@ -13,10 +11,13 @@ import java.util.Map;
  */
 public class Resultat {
 
-    private List<Integer> classement; //Représente le classement des candidats, chacun étant représenté par son numéro dans l'entrée io.ResultArray
+    private List<Integer> classement; //Représente le classement des candidats, chacun étant représenté par son numéro dans l'entrée Urne
     private String nomMethode; //Méthode de vote utilisée pour réaliser ce classement
 
+    public Resultat() {}
+
     public Resultat(List<Integer> classement, String nomMethode) {
+        this();
         this.classement = classement;
         this.nomMethode = nomMethode;
     }
@@ -30,7 +31,7 @@ public class Resultat {
         return classement;
     }
 
-    public void setClassement(List<Integer> classement) {
+    private void setClassement(List<Integer> classement) {
         this.classement = classement;
     }
 
@@ -38,7 +39,7 @@ public class Resultat {
         return nomMethode;
     }
 
-    public void setNomMethode(String nomMethode) {
+    private void setNomMethode(String nomMethode) {
         this.nomMethode = nomMethode;
     }
 }

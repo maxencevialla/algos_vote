@@ -18,7 +18,7 @@ public class UninomUnTour extends Methode {
     private UninomUnTour() {
     }
 
-    public Resultat getResult(Urne r) {
+    public Resultat getResult(Urne r) throws Exception {
 
         if(!checkNumberOfCandidats(r.getNbCandidats())) {
             return null;

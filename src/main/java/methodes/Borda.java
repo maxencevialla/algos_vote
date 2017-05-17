@@ -18,7 +18,7 @@ public class Borda extends Methode {
     private Borda() {
     }
 
-    public Resultat getResult(Urne r) {
+    public Resultat getResult(Urne r) throws Exception {
 
         if(!checkNumberOfCandidats(r.getNbCandidats())) {
             return null;

@@ -7,11 +7,8 @@ import io.Resultats;
  */
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Urne r = new Urne(5, 40);
-//        Borda.getInstance().printAndTimeResult(r);
-//        UninomUnTour.getInstance().printAndTimeResult(r);
-//        UninomDeuxTours.getInstance().printAndTimeResult(r);
 
         Resultats.getInstance().getAllResults(r);
 

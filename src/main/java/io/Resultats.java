@@ -30,7 +30,7 @@ public class Resultats {
      *
      * @param r : Données de votes à traiter
      */
-    public void getAllResults(Urne r) {
+    public void getAllResults(Urne r) throws Exception {
         mesResultats.add(UninomUnTour.getInstance().getResult(r));
         mesResultats.add(UninomDeuxTours.getInstance().getResult(r));
         mesResultats.add(Borda.getInstance().getResult(r));

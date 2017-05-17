@@ -1,5 +1,6 @@
 package methodes;
 
+import exceptions.WrongCandidateNumberException;
 import io.Urne;
 import io.Resultat;
 
@@ -8,16 +9,16 @@ import io.Resultat;
  */
 public abstract class Methode {
 
-    public abstract Resultat getResult(Urne r);
+    public abstract Resultat getResult(Urne r) throws Exception;
 
-    public static boolean checkNumberOfCandidats(int nbCandidats) {
+    public static boolean checkNumberOfCandidats(int nbCandidats) throws WrongCandidateNumberException {
         if(nbCandidats < 2) {
-            return false;
+            throw new WrongCandidateNumberException("Le nombre de candidats doit être supérieur à 2");
         }
         return true;
     }
 
-    public void printAndTimeResult(Urne r) {
+    public void printAndTimeResult(Urne r) throws Exception {
         long start = System.currentTimeMillis();
         Resultat res = getResult(r);
 
