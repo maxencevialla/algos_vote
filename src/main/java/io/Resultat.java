@@ -14,10 +14,7 @@ public class Resultat {
     private List<Integer> classement; //Représente le classement des candidats, chacun étant représenté par son numéro dans l'entrée Urne
     private String nomMethode; //Méthode de vote utilisée pour réaliser ce classement
 
-    public Resultat() {}
-
     public Resultat(List<Integer> classement, String nomMethode) {
-        this();
         this.classement = classement;
         this.nomMethode = nomMethode;
     }

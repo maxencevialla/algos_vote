@@ -9,7 +9,7 @@ import io.Resultat;
  */
 public abstract class Methode {
 
-    public abstract Resultat getResult(Urne r) throws Exception;
+    public abstract Resultat getResult(Urne r) throws WrongCandidateNumberException;
 
     public static boolean checkNumberOfCandidats(int nbCandidats) throws WrongCandidateNumberException {
         if(nbCandidats < 2) {

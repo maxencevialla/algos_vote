@@ -1,6 +1,6 @@
 package io;
 
-import exceptions.WrongResultArrayException;
+import exceptions.mauvaisesUrnesException.MauvaiseUrneException;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -57,9 +57,9 @@ public class Urne {
      *
      * @param votes : contient tous les bulletins à traiter
      *              Chaque arraylist "interne" contient l'ordre des choix d'un votant
-     * @throws WrongResultArrayException : renvoit une exception si la stucutre de l'array votes n'est pas celle attendue
+     * @throws MauvaiseUrneException : renvoit une exception si la stucture de l'array votes n'est pas celle attendue
      */
-    public Urne(ArrayList<ArrayList<Integer>> votes) throws WrongResultArrayException {
+    public Urne(ArrayList<ArrayList<Integer>> votes) throws MauvaiseUrneException {
         this();
         this.votes = votes;
 
@@ -78,12 +78,15 @@ public class Urne {
         }
     }
 
-    public void checkStructure() throws WrongResultArrayException {
+    public void checkStructure() throws MauvaiseUrneException {
 
         for(int i = 0 ; i < nbVotants ; i++){
+            if(this.getVotes().get(i).size() != nbCandidats) {
+                throw new MauvaiseUrneException("Longueur de ligne " + i + " non valide.");
+            }
             for(int j = 0 ; j < nbCandidats ; j++) {
-                if(this.getVotes().indexOf(j+1) == -1) {
-                    throw new WrongResultArrayException("ResultArray entré non valide");
+                if(this.getVotes().get(i).indexOf(j+1) == -1) {
+                    throw new MauvaiseUrneException("Urne entrée non valide");
                 }
             }
         }

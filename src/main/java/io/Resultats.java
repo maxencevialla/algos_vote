@@ -1,5 +1,6 @@
 package io;
 
+import exceptions.WrongCandidateNumberException;
 import methodes.Borda;
 import methodes.UninomDeuxTours;
 import methodes.UninomUnTour;
@@ -30,7 +31,7 @@ public class Resultats {
      *
      * @param r : Données de votes à traiter
      */
-    public void getAllResults(Urne r) throws Exception {
+    public void calculeResultats(Urne r) throws WrongCandidateNumberException {
         mesResultats.add(UninomUnTour.getInstance().getResult(r));
         mesResultats.add(UninomDeuxTours.getInstance().getResult(r));
         mesResultats.add(Borda.getInstance().getResult(r));

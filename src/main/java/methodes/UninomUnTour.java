@@ -1,5 +1,6 @@
 package methodes;
 
+import exceptions.WrongCandidateNumberException;
 import io.Urne;
 import io.Resultat;
 
@@ -18,7 +19,7 @@ public class UninomUnTour extends Methode {
     private UninomUnTour() {
     }
 
-    public Resultat getResult(Urne r) throws Exception {
+    public Resultat getResult(Urne r) throws WrongCandidateNumberException {
 
         if(!checkNumberOfCandidats(r.getNbCandidats())) {
             return null;
