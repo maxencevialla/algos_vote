@@ -1,5 +1,7 @@
 package io;
 
+import exceptions.mauvaisesUrnesException.ClassementInvalideException;
+import exceptions.mauvaisesUrnesException.LongueurDeLigneIncorrecteException;
 import exceptions.mauvaisesUrnesException.MauvaiseUrneException;
 
 import java.util.ArrayList;
@@ -82,11 +84,11 @@ public class Urne {
 
         for(int i = 0 ; i < nbVotants ; i++){
             if(this.getVotes().get(i).size() != nbCandidats) {
-                throw new MauvaiseUrneException("Longueur de ligne " + i + " non valide.");
+                throw new LongueurDeLigneIncorrecteException("Longueur de ligne " + i + " non valide.");
             }
             for(int j = 0 ; j < nbCandidats ; j++) {
                 if(this.getVotes().get(i).indexOf(j+1) == -1) {
-                    throw new MauvaiseUrneException("Urne entrée non valide");
+                    throw new ClassementInvalideException("Classement de la ligne " + i + " non valide.");
                 }
             }
         }
