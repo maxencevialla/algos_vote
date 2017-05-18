@@ -18,7 +18,7 @@ public class UninomUnTourTest {
 
     @BeforeClass
     public static void initResultat() throws WrongCandidateNumberException {
-        r = new Urne(5, 25);
+        r = new Urne(5, 2000);
         res = UninomUnTour.getInstance().getResult(r);
     }
 
