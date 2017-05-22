@@ -1,13 +1,11 @@
 package io;
 
 import exceptions.WrongCandidateNumberException;
-import methodes.Borda;
-import methodes.Methode;
-import methodes.UninomDeuxTours;
-import methodes.UninomUnTour;
+import methodes.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 /**
  * Created by maxence on 16/05/17.
@@ -33,15 +31,24 @@ public class Resultats {
      * @param r : Données de votes à traiter
      */
     public void calculeResultats(Urne r) throws WrongCandidateNumberException {
+        Function<ArrayList<Byte>, Double> moyenne = x -> {
+            double d = 0;
+            for(Byte b : x) {
+                d += b;
+            }
+            return d/x.size();
+        };
+
         Methode[] methodes = {
                 UninomUnTour.getInstance(),
                 UninomDeuxTours.getInstance(),
-                Borda.getInstance()
+                Borda.getInstance(),
+                new ClassementParametrable(moyenne)
         };
 
         for(Methode m : methodes) {
-            mesResultats.add(m.getResult(r));
-            //m.printAndTimeResult(r);
+            //mesResultats.add(m.getResult(r));
+            m.printAndTimeResult(r);
         }
     }
 

@@ -1,7 +1,9 @@
 import io.Urne;
 import io.Resultat;
 import io.Resultats;
+import methodes.ClassementParametrable;
 
+import java.util.ArrayList;
 import java.util.function.Function;
 
 /**
@@ -11,14 +13,13 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        Urne r = new Urne(25, 1000);
+        Urne r = new Urne(5, 1000);
 
-        Function<Integer, Integer> function = x -> 2+x;
 
         Resultats.getInstance().calculeResultats(r);
 
-        for(Resultat res : Resultats.getInstance().getMesResultats()) {
+        /*for(Resultat res : Resultats.getInstance().getMesResultats()) {
             System.out.println(res);
-        }
+        }*/
     }
 }

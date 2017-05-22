@@ -53,17 +53,17 @@ public abstract class Methode {
      * @param scores : score de chaque candidat, la place dans le tableau représentant le numéro de chaque candidat
      * @return classement des candidats
      */
-    public List<Byte> classeParScore(Integer[] scores) {
-        Map<Integer, Byte> mapClassement = new TreeMap<Integer, Byte>(Collections.<Integer>reverseOrder());
+    public List<Byte> classeParScore(Double[] scores) {
+        Map<Double, Byte> mapClassement = new TreeMap<Double, Byte>(Collections.<Double>reverseOrder());
+
         for(byte i = 0 ; i < scores.length ; i++) {
             mapClassement.put(scores[i], i);
         }
 
         List<Byte> resultList = new ArrayList<Byte>();
 
-        for(Integer i : mapClassement.keySet()) {
-            //System.out.println("Candidat n°" + mapClassement.get(i) + " : " + i + " voix.");
-            resultList.add(mapClassement.get(i));
+        for(Double d : mapClassement.keySet()) {
+            resultList.add(mapClassement.get(d));
         }
 
         return resultList;

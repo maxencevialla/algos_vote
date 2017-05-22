@@ -11,31 +11,29 @@ import java.util.function.Function;
  * Created by maxence on 22/05/17.
  */
 public class ClassementParametrable extends Methode {
-    private static ClassementParametrable ourInstance = new ClassementParametrable();
 
-    public static ClassementParametrable getInstance() {
-        return ourInstance;
-    }
+    private Function<ArrayList<Byte>, Double> param;
 
     private ClassementParametrable() {
+        super();
     }
 
-    private static Function<ArrayList<Byte>, Integer> param;
-
-    public static void setParam(Function<ArrayList<Byte>, Integer> myParam) {
-        param = myParam;
+    public ClassementParametrable(Function<ArrayList<Byte>, Double> myParam) {
+        this();
+        this.param = myParam;
     }
 
     @Override
     public Resultat getResult(Urne r) throws WrongCandidateNumberException {
 
-        Integer[] classementMoyen = new Integer[r.getNbCandidats()];
+        Double[] classementMoyen = new Double[r.getNbCandidats()];
         ArrayList<Byte> classementCandidatCourant;
 
         for(int i = 0 ; i < r.getNbCandidats() ; i++) {
-            classementCandidatCourant = null; //Initialisation à chaque candidat
+            classementCandidatCourant = new ArrayList<>(); //Initialisation à chaque candidat
             for(int j = 0 ; j < r.getNbVotants() ; j++) {
                 //On agrège tous les classements du candidat i
+                //System.out.println("Candidat " + i + ", votant " + j + " : " + r.getVotes().get(j).get(i));
                 classementCandidatCourant.add(r.getVotes().get(j).get(i));
             }
 
