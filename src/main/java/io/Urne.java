@@ -16,13 +16,13 @@ import java.util.Random;
  */
 public class Urne {
 
-    private ArrayList<ArrayList<Integer>> votes;
+    private ArrayList<ArrayList<Byte>> votes;
     private int nbCandidats;
     private int nbVotants;
     private int numCandidatPref;
 
     private Urne() {
-        this.votes = new ArrayList<ArrayList<Integer>>();
+        this.votes = new ArrayList<ArrayList<Byte>>();
     }
 
     /**
@@ -37,18 +37,18 @@ public class Urne {
         this.nbVotants = nbVotants;
 
         Random rand = new Random();
-        int myRand;
-        ArrayList<Integer> line;
+        Integer myRand;
+        ArrayList<Byte> line;
 
         for(int i = 0 ; i < this.nbVotants ; i++) {
-            line = new ArrayList<Integer>();
+            line = new ArrayList<Byte>();
             for(int j = 0 ; j < this.nbCandidats ; j++) {
                 myRand = rand.nextInt(this.nbCandidats) + 1;
-                while(line.contains(myRand)) {
+                while(line.contains(myRand.byteValue())) {
                     myRand = rand.nextInt(this.nbCandidats) + 1;
                 }
                 //System.out.println("Add " + myRand +" to this array : " + line.toString());
-                line.add(myRand);
+                line.add(myRand.byteValue());
             }
             //System.out.println("Add " + line.toString() + " to this array : " + this.votes.toString());
             this.votes.add(line);
@@ -61,7 +61,7 @@ public class Urne {
      *              Chaque arraylist "interne" contient l'ordre des choix d'un votant
      * @throws MauvaiseUrneException : renvoit une exception si la stucture de l'array votes n'est pas celle attendue
      */
-    public Urne(ArrayList<ArrayList<Integer>> votes) throws MauvaiseUrneException {
+    public Urne(ArrayList<ArrayList<Byte>> votes) throws MauvaiseUrneException {
         this();
         this.votes = votes;
 
@@ -94,11 +94,11 @@ public class Urne {
         }
     }
 
-    public ArrayList<ArrayList<Integer>> getVotes() {
+    public ArrayList<ArrayList<Byte>> getVotes() {
         return votes;
     }
 
-    private void setVotes(ArrayList<ArrayList<Integer>> votes) {
+    private void setVotes(ArrayList<ArrayList<Byte>> votes) {
         this.votes = votes;
     }
 

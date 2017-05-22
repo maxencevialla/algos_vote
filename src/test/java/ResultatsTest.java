@@ -15,8 +15,8 @@ public class ResultatsTest {
     static Urne r;
 
     @BeforeClass
-    public static void initResultats() throws WrongCandidateNumberException {
-        r = new Urne(5, 250);
+    public static void initResultats() throws WrongCandidateNumberException, Exception {
+        r = new Urne(5, 2500);
         Resultats.getInstance().calculeResultats(r);
     }
 

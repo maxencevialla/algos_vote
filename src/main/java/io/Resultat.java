@@ -11,10 +11,10 @@ import java.util.List;
  */
 public class Resultat {
 
-    private List<Integer> classement; //Représente le classement des candidats, chacun étant représenté par son numéro dans l'entrée Urne
+    private List<Byte> classement; //Représente le classement des candidats, chacun étant représenté par son numéro dans l'entrée Urne
     private String nomMethode; //Méthode de vote utilisée pour réaliser ce classement
 
-    public Resultat(List<Integer> classement, String nomMethode) {
+    public Resultat(List<Byte> classement, String nomMethode) {
         this.classement = classement;
         this.nomMethode = nomMethode;
     }
@@ -24,11 +24,11 @@ public class Resultat {
         return "Numéro du vainqueur : " + this.classement.get(0) + " avec méthode " + this.nomMethode;
     }
 
-    public List<Integer> getClassement() {
+    public List<Byte> getClassement() {
         return classement;
     }
 
-    private void setClassement(List<Integer> classement) {
+    private void setClassement(List<Byte> classement) {
         this.classement = classement;
     }
 

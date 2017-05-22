@@ -28,10 +28,10 @@ public class UninomDeuxTours extends Methode {
         Resultat res = UninomUnTour.getInstance().getResult(r);
 
         //Récupération du classement du premier tour
-        List<Integer> classementPremierTour = res.getClassement();
+        List<Byte> classementPremierTour = res.getClassement();
 
-        int premier = classementPremierTour.get(0);
-        int second = classementPremierTour.get(1);
+        byte premier = classementPremierTour.get(0);
+        byte second = classementPremierTour.get(1);
 
         int nbVotesPourPremier = 0, nbVotesPourSecond = 0;
 
@@ -44,7 +44,7 @@ public class UninomDeuxTours extends Methode {
             }
         }
 
-        List<Integer> classementSecondTour = classementPremierTour;
+        List<Byte> classementSecondTour = classementPremierTour;
         //System.out.println("Premier : " + nbVotesPourPremier + " voix.");
         //System.out.println("Second : " + nbVotesPourSecond + " voix.");
 

@@ -10,9 +10,8 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        
 
-        Urne r = new Urne(5, 40);
+        Urne r = new Urne(25, 1000);
 
         Resultats.getInstance().calculeResultats(r);
 

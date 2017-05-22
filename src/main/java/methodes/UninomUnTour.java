@@ -33,16 +33,16 @@ public class UninomUnTour extends Methode {
 
         //On parcourt les candidats
         for(int i = 0 ; i < r.getNbVotants() ; i++) {
-            premieresPlaces[r.getVotes().get(i).indexOf(1)]++;
+            premieresPlaces[r.getVotes().get(i).indexOf((byte)1)]++;
         }
 
         //On place les couples <candidat, nombreDePremieresPlaces> dans une treemap classée par nb de voix
-        Map<Integer, Integer> mapClassement = new TreeMap<Integer, Integer>(Collections.<Integer>reverseOrder());
-        for(int i = 0 ; i < premieresPlaces.length ; i++) {
+        Map<Integer, Byte> mapClassement = new TreeMap<Integer, Byte>(Collections.<Integer>reverseOrder());
+        for(byte i = 0 ; i < premieresPlaces.length ; i++) {
             mapClassement.put(premieresPlaces[i], i);
         }
 
-        List<Integer> resultList = new ArrayList<Integer>();
+        List<Byte> resultList = new ArrayList<Byte>();
 
         for(Integer i : mapClassement.keySet()) {
             //System.out.println("Candidat n°" + mapClassement.get(i) + " : " + i + " voix.");

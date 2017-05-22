@@ -32,7 +32,7 @@ public class Resultats {
      *
      * @param r : Données de votes à traiter
      */
-    public void calculeResultats(Urne r) throws WrongCandidateNumberException {
+    public void calculeResultats(Urne r) throws WrongCandidateNumberException, Exception {
         Methode[] methodes = {
                 UninomUnTour.getInstance(),
                 UninomDeuxTours.getInstance(),
@@ -40,7 +40,8 @@ public class Resultats {
         };
 
         for(Methode m : methodes) {
-            mesResultats.add(m.getResult(r));
+            //mesResultats.add(m.getResult(r));
+            m.printAndTimeResult(r);
         }
     }
 
