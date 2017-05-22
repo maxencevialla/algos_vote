@@ -38,7 +38,7 @@ public class Urne {
 
         Random rand = new Random();
         int myRand;
-        ArrayList<Integer> line = null;
+        ArrayList<Integer> line;
 
         for(int i = 0 ; i < this.nbVotants ; i++) {
             line = new ArrayList<Integer>();
