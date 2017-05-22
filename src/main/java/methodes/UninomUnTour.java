@@ -31,7 +31,7 @@ public class UninomUnTour extends Methode {
             premieresPlaces[i] = 0;
         }
 
-        //On parcourt les candidats
+        //On parcourt les candidats et met à jour les premières places
         for(int i = 0 ; i < r.getNbVotants() ; i++) {
             premieresPlaces[r.getVotes().get(i).indexOf((byte)1)]++;
         }

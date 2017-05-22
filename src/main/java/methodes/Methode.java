@@ -4,6 +4,8 @@ import exceptions.WrongCandidateNumberException;
 import io.Urne;
 import io.Resultat;
 
+import java.util.*;
+
 /**
  * Created by maxence on 15/05/17.
  */
@@ -11,14 +13,25 @@ public abstract class Methode {
 
     public abstract Resultat getResult(Urne r) throws WrongCandidateNumberException;
 
+    /** Le nombre de candidats doit rentrer dans unByte
+    *   doit être supérieur à 2 pour garantir l'efficacité des méthodes de vote
+     */
     public static boolean checkNumberOfCandidats(int nbCandidats) throws WrongCandidateNumberException {
-        if(nbCandidats < 2) {
-            throw new WrongCandidateNumberException("Le nombre de candidats doit être supérieur à 2");
+        if(nbCandidats < 2 || nbCandidats > 127) {
+            throw new WrongCandidateNumberException("Le nombre de candidats doit être compris entre 2 et 127 (actuel : "
+                    + nbCandidats + ")");
         }
         return true;
     }
 
-    public void printAndTimeResult(Urne r) throws Exception {
+    /**
+     *  Calcule les résultats sur l'urne r, affiche le classement pour chacune des méthodes, et le temps nécessaire pour chaque méthode
+     *  Principalement utile en débuggage
+     *
+     * @param r
+     * @throws Exception
+     */
+    public void printAndTimeResult(Urne r) throws WrongCandidateNumberException {
         long start = System.currentTimeMillis();
         Resultat res = getResult(r);
 
@@ -33,5 +46,26 @@ public abstract class Methode {
         }
 
         System.out.println();
+    }
+
+    /**
+     *
+     * @param scores : score de chaque candidat, la place dans le tableau représentant le numéro de chaque candidat
+     * @return classement des candidats
+     */
+    public List<Byte> classeParScore(Integer[] scores) {
+        Map<Integer, Byte> mapClassement = new TreeMap<Integer, Byte>(Collections.<Integer>reverseOrder());
+        for(byte i = 0 ; i < scores.length ; i++) {
+            mapClassement.put(scores[i], i);
+        }
+
+        List<Byte> resultList = new ArrayList<Byte>();
+
+        for(Integer i : mapClassement.keySet()) {
+            //System.out.println("Candidat n°" + mapClassement.get(i) + " : " + i + " voix.");
+            resultList.add(mapClassement.get(i));
+        }
+
+        return resultList;
     }
 }
