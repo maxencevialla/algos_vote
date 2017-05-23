@@ -63,9 +63,11 @@ public abstract class Methode {
             if(!mapClassement.containsKey(scores[i])) {
                 mapClassement.put(scores[i], i);
             } else {
-                mapClassement.put(scores[i]*1.01, i); //On modifie arbitrairement le score du candidat i pour pouvoir le placer dans la map
+                /**  GERER LES EGALITES PLUS PROPREMENT **/
+                mapClassement.put(scores[i]*1.001*i, i); //On modifie arbitrairement le score du candidat i pour pouvoir le placer dans la map
                 //TODO l'idéal serait d'informer l'appelant d'une égalité sans interrompre l'exécution
                 //TODO pour le moment, on ne renvoit pas d'exception et on "cache" les égalités
+
                 //throw new EgaliteException("Egalité entre candidats " + i + " et " + mapClassement.get(scores[i]));
             }
 

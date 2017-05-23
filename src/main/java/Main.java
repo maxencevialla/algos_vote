@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        Urne r = new Urne(5, 100);
+        Urne r = new Urne(5, 1000);
 
 
         Resultats.getInstance().calculeResultats(r);

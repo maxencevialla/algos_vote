@@ -26,10 +26,10 @@ public class UninomUnTour extends Methode {
             return null;
         }
 
-        Integer[] premieresPlaces = new Integer[r.getNbCandidats()];
+        Double[] premieresPlaces = new Double[r.getNbCandidats()];
 
         for(int i = 0 ; i < r.getNbCandidats() ; i++) {
-            premieresPlaces[i] = 0;
+            premieresPlaces[i] = 0.0;
         }
 
         //On parcourt les candidats et met à jour les premières places
@@ -37,21 +37,6 @@ public class UninomUnTour extends Methode {
             premieresPlaces[r.getVotes().get(i).indexOf((byte)1)]++;
         }
 
-        //On place les couples <candidat, nombreDePremieresPlaces> dans une treemap classée par nb de voix
-        Map<Integer, Byte> mapClassement = new TreeMap<Integer, Byte>(Collections.<Integer>reverseOrder());
-        for(byte i = 0 ; i < premieresPlaces.length ; i++) {
-            mapClassement.put(premieresPlaces[i], i);
-        }
-
-        List<Byte> resultList = new ArrayList<Byte>();
-
-        for(Integer i : mapClassement.keySet()) {
-            //System.out.println("Candidat n°" + mapClassement.get(i) + " : " + i + " voix.");
-            resultList.add(mapClassement.get(i));
-        }
-
-        Resultat res = new Resultat(resultList, UninomUnTour.class.getSimpleName());
-
-        return res;
+        return new Resultat(classeParScore(premieresPlaces), UninomUnTour.class.getSimpleName());
     }
 }

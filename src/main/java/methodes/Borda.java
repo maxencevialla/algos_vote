@@ -26,24 +26,10 @@ public class Borda extends Methode {
             return null;
         }
 
-        Map<Integer, Byte> mapClassement = getNbPoints(r);
-
-        List<Byte> resultList = new ArrayList<Byte>();
-
-        for(Integer i : mapClassement.keySet()) {
-            resultList.add(mapClassement.get(i));
-        }
-
-        Resultat res = new Resultat(resultList, Borda.class.getSimpleName());
-
-        return res;
-    }
-
-    private Map<Integer, Byte> getNbPoints(Urne r) {
-        Integer[] nbVoix = new Integer[r.getNbCandidats()];
+        Double[] nbVoix = new Double[r.getNbCandidats()];
 
         for(int i = 0 ; i < r.getNbCandidats() ; i++) {
-            nbVoix[i] = 0;
+            nbVoix[i] = 0.0;
         }
 
         //On parcourt les candidats
@@ -53,12 +39,7 @@ public class Borda extends Methode {
             }
         }
 
-        //On place les couples <candidat, nombreDePremieresPlaces> dans une treemap classée par nb de voix
-        Map<Integer, Byte> mapClassement = new TreeMap<Integer, Byte>(Collections.<Integer>reverseOrder());
-        for(int i = 0 ; i < nbVoix.length ; i++) {
-            mapClassement.put(nbVoix[i], (byte)i);
-        }
-
-        return mapClassement;
+        return new Resultat(classeParScore(nbVoix), Borda.class.getSimpleName());
     }
+
 }
