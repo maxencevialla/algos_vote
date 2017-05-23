@@ -14,7 +14,7 @@ public abstract class Methode {
 
     public abstract Resultat getResult(Urne r) throws WrongCandidateNumberException, EgaliteException;
 
-    /** Le nombre de candidats doit rentrer dans unByte
+    /** Le nombre de candidats doit rentrer dans un Byte
     *   doit être supérieur à 2 pour garantir l'efficacité des méthodes de vote
      */
     public static boolean checkNumberOfCandidats(int nbCandidats) throws WrongCandidateNumberException {
@@ -66,7 +66,6 @@ public abstract class Methode {
             r.add((byte)i);
             s.set(i, -1.0);
         }
-
         return r;
     }
 
@@ -75,10 +74,11 @@ public abstract class Methode {
      * @param scores : score de chaque candidat, la place dans le tableau représentant le numéro de chaque candidat
      * @return classement des candidats
      */
+    @Deprecated
     public List<Byte> oldclasseParScore(Double[] scores) throws EgaliteException {
         //TODO faire le classement plus proprement en codant une vraie méthode de tri à la place de la TreeMap...
         //TODO s'aider de Urne.getCandidatPrefere() pour gérer les égalités
-        Map<Double, Byte> mapClassement = new TreeMap<Double, Byte>(Collections.<Double>reverseOrder());
+        Map<Double, Byte> mapClassement = new TreeMap<>(Collections.reverseOrder());
 
 
         for(byte i = 0 ; i < scores.length ; i++) {
@@ -95,7 +95,7 @@ public abstract class Methode {
 
         }
 
-        List<Byte> resultList = new ArrayList<Byte>();
+        List<Byte> resultList = new ArrayList<>();
 
         for(Double d : mapClassement.keySet()) {
             resultList.add(mapClassement.get(d));
