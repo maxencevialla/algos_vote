@@ -1,5 +1,6 @@
 package methodes;
 
+import exceptions.EgaliteException;
 import exceptions.WrongCandidateNumberException;
 import io.Urne;
 import io.Resultat;
@@ -19,7 +20,7 @@ public class UninomDeuxTours extends Methode {
     private UninomDeuxTours() {
     }
 
-    public Resultat getResult(Urne r) throws WrongCandidateNumberException{
+    public Resultat getResult(Urne r) throws WrongCandidateNumberException, EgaliteException {
 
         if(!checkNumberOfCandidats(r.getNbCandidats())) {
             return null;

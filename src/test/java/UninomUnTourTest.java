@@ -1,3 +1,4 @@
+import exceptions.EgaliteException;
 import exceptions.WrongCandidateNumberException;
 import io.Resultat;
 import io.Resultats;
@@ -17,7 +18,7 @@ public class UninomUnTourTest {
     static Resultat res;
 
     @BeforeClass
-    public static void initResultat() throws WrongCandidateNumberException {
+    public static void initResultat() throws WrongCandidateNumberException, EgaliteException {
         r = new Urne(5, 2000);
         res = UninomUnTour.getInstance().getResult(r);
     }

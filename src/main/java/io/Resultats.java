@@ -1,5 +1,6 @@
 package io;
 
+import exceptions.EgaliteException;
 import exceptions.WrongCandidateNumberException;
 import methodes.*;
 
@@ -30,7 +31,7 @@ public class Resultats {
      *
      * @param r : Données de votes à traiter
      */
-    public void calculeResultats(Urne r) throws WrongCandidateNumberException {
+    public void calculeResultats(Urne r) throws WrongCandidateNumberException, EgaliteException {
         Function<ArrayList<Byte>, Double> moyenne = x -> {
             double d = 0;
             for(Byte b : x) {

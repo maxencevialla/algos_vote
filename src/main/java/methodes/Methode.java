@@ -1,5 +1,6 @@
 package methodes;
 
+import exceptions.EgaliteException;
 import exceptions.WrongCandidateNumberException;
 import io.Urne;
 import io.Resultat;
@@ -11,7 +12,7 @@ import java.util.*;
  */
 public abstract class Methode {
 
-    public abstract Resultat getResult(Urne r) throws WrongCandidateNumberException;
+    public abstract Resultat getResult(Urne r) throws WrongCandidateNumberException, EgaliteException;
 
     /** Le nombre de candidats doit rentrer dans unByte
     *   doit être supérieur à 2 pour garantir l'efficacité des méthodes de vote
@@ -31,7 +32,7 @@ public abstract class Methode {
      * @param r
      * @throws Exception
      */
-    public void printAndTimeResult(Urne r) throws WrongCandidateNumberException {
+    public void printAndTimeResult(Urne r) throws WrongCandidateNumberException, EgaliteException {
         long start = System.currentTimeMillis();
         Resultat res = getResult(r);
 
@@ -53,11 +54,21 @@ public abstract class Methode {
      * @param scores : score de chaque candidat, la place dans le tableau représentant le numéro de chaque candidat
      * @return classement des candidats
      */
-    public List<Byte> classeParScore(Double[] scores) {
+    public List<Byte> classeParScore(Double[] scores) throws EgaliteException {
+        //TODO faire le classement plus proprement en codant une vraie méthode de tri à la place de la TreeMap...
+        //TODO s'aider de Urne.getCandidatPrefere() pour gérer les égalités
         Map<Double, Byte> mapClassement = new TreeMap<Double, Byte>(Collections.<Double>reverseOrder());
 
         for(byte i = 0 ; i < scores.length ; i++) {
-            mapClassement.put(scores[i], i);
+            if(!mapClassement.containsKey(scores[i])) {
+                mapClassement.put(scores[i], i);
+            } else {
+                mapClassement.put(scores[i]*1.01, i); //On modifie arbitrairement le score du candidat i pour pouvoir le placer dans la map
+                //TODO l'idéal serait d'informer l'appelant d'une égalité sans interrompre l'exécution
+                //TODO pour le moment, on ne renvoit pas d'exception et on "cache" les égalités
+                //throw new EgaliteException("Egalité entre candidats " + i + " et " + mapClassement.get(scores[i]));
+            }
+
         }
 
         List<Byte> resultList = new ArrayList<Byte>();

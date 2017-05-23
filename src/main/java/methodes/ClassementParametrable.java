@@ -1,5 +1,6 @@
 package methodes;
 
+import exceptions.EgaliteException;
 import exceptions.WrongCandidateNumberException;
 import io.Resultat;
 import io.Urne;
@@ -24,7 +25,7 @@ public class ClassementParametrable extends Methode {
     }
 
     @Override
-    public Resultat getResult(Urne r) throws WrongCandidateNumberException {
+    public Resultat getResult(Urne r) throws WrongCandidateNumberException, EgaliteException {
 
         Double[] classementMoyen = new Double[r.getNbCandidats()];
         ArrayList<Byte> classementCandidatCourant;
