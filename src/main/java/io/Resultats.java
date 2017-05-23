@@ -5,6 +5,8 @@ import exceptions.WrongCandidateNumberException;
 import methodes.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
 
@@ -40,11 +42,17 @@ public class Resultats {
             return d/x.size();
         };
 
+        Function<ArrayList<Byte>, Double> mediane = x -> {
+            Collections.sort(x);
+            return x.get(x.size()/2).doubleValue();
+        };
+
         Methode[] methodes = {
                 UninomUnTour.getInstance(),
                 UninomDeuxTours.getInstance(),
                 Borda.getInstance(),
-                new ClassementParametrable(moyenne)
+                new ClassementParametrable(moyenne),
+                new ClassementParametrable(mediane)
         };
 
         for(Methode m : methodes) {
