@@ -51,13 +51,33 @@ public abstract class Methode {
 
     /**
      *
+     * @param scores : score POSITIF OU NUL de chaque candidat, la place dans le tableau représentant le numéro de chaque candidat
+     * @return classement des candidats
+     */
+    public List<Byte> classeParScore(Double[] scores) {
+        List<Double> s = Arrays.asList(scores);
+        List<Byte> r = new ArrayList<>();
+        int i;
+
+        while(Collections.max(s) > -1) {
+            i = s.indexOf(Collections.max(s));
+            r.add((byte)i);
+            s.set(i, -1.0);
+        }
+
+        return r;
+    }
+
+    /**
+     *
      * @param scores : score de chaque candidat, la place dans le tableau représentant le numéro de chaque candidat
      * @return classement des candidats
      */
-    public List<Byte> classeParScore(Double[] scores) throws EgaliteException {
+    public List<Byte> oldclasseParScore(Double[] scores) throws EgaliteException {
         //TODO faire le classement plus proprement en codant une vraie méthode de tri à la place de la TreeMap...
         //TODO s'aider de Urne.getCandidatPrefere() pour gérer les égalités
         Map<Double, Byte> mapClassement = new TreeMap<Double, Byte>(Collections.<Double>reverseOrder());
+
 
         for(byte i = 0 ; i < scores.length ; i++) {
             if(!mapClassement.containsKey(scores[i])) {
@@ -81,4 +101,5 @@ public abstract class Methode {
 
         return resultList;
     }
+
 }
