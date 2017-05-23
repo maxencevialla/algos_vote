@@ -19,7 +19,7 @@ public class UninomUnTourTest {
 
     @BeforeClass
     public static void initResultat() throws WrongCandidateNumberException, EgaliteException {
-        r = new Urne(5, 2000);
+        r = new Urne(5, 20);
         res = UninomUnTour.getInstance().getResult(r);
     }
 

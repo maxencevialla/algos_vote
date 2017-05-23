@@ -27,6 +27,6 @@ public class ResultatsTest {
             assertEquals("Resultat par " + res.getNomMethode() + " n'a pas la bonne taille",
                     r.getNbCandidats(), res.getClassement().size());
         }
-
     }
+
 }
