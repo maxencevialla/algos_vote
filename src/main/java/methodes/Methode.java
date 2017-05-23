@@ -54,8 +54,10 @@ public abstract class Methode {
      * @param scores : score POSITIF OU NUL de chaque candidat, la place dans le tableau représentant le numéro de chaque candidat
      * @return classement des candidats
      */
+    //TODO gérer l'influence sur l'égalité si un des candidats à égalité doit être privilégié
     public List<Byte> classeParScore(Double[] scores) {
         List<Double> s = Arrays.asList(scores);
+        System.out.println(s);
         List<Byte> r = new ArrayList<>();
         int i;
 

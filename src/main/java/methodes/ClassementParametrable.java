@@ -6,6 +6,8 @@ import io.Resultat;
 import io.Urne;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.function.Function;
 
 /**
@@ -41,6 +43,11 @@ public class ClassementParametrable extends Methode {
             classementMoyen[i] = param.apply(classementCandidatCourant);
         }
 
-        return new Resultat(classeParScore(classementMoyen), ClassementParametrable.class.getSimpleName());
+        List<Byte> classement = classeParScore(classementMoyen);
+
+        //On travaille sur des valeurs agrégées de classement, on veut donc les classer du plus petit au plus grand
+        Collections.reverse(classement);
+
+        return new Resultat(classement, ClassementParametrable.class.getSimpleName());
     }
 }
