@@ -1,3 +1,4 @@
+import io.Resultat;
 import io.Urne;
 import io.Resultats;
 
@@ -8,12 +9,12 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        Urne r = new Urne(5, 1000);
+        Urne r = new Urne(4, 1000);
 
         Resultats.getInstance().calculeResultats(r);
 
-        /*for(Resultat res : Resultats.getInstance().getMesResultats()) {
+        for(Resultat res : Resultats.getInstance().getMesResultats()) {
             System.out.println(res);
-        }*/
+        }
     }
 }

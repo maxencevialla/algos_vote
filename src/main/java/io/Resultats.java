@@ -51,6 +51,7 @@ public class Resultats {
                 UninomUnTour.getInstance(),
                 UninomDeuxTours.getInstance(),
                 Borda.getInstance(),
+                VoteAlternatif.getInstance(),
                 new ClassementParametrable(moyenne),
                 new ClassementParametrable(mediane)
         };
