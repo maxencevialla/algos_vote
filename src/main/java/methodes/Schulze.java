@@ -57,6 +57,7 @@ public class Schulze extends Methode {
         //Variante de algo Floyd-Marshall, permet de trouver le chemin le plus court entre 2 points dans un graphe pondéré
         // https://en.wikipedia.org/wiki/Schulze_method#Implementation
 
+        //1er remplissage de p avec le contenu des arêtes du graphes, selon leur orientation
         for(int i = 0; i < r.getNbCandidats() ; i++) {
             for(int j = 0; j < r.getNbCandidats() ; j++) {
                 if(i != j) {
@@ -69,11 +70,14 @@ public class Schulze extends Methode {
             }
         }
 
+        //A chaque passage dans la boucle i, on prends en compte les chemins passant par i
         for(int i = 0; i < r.getNbCandidats() ; i++) {
             for(int j = 0; j < r.getNbCandidats() ; j++) {
                 if(i != j) {
                     for(int k = 0; k < r.getNbCandidats() ; k++) {
+                        //On recherche un chemin entre j et k passant par i
                         if(i != k && j != k) {
+                            //On met à jour la valeur du chemin ssi le passage par i est avantageux sur l'ancienne valeur
                             p[j][k] = Math.max(p[j][k], Math.min(p[j][i], p[i][k]));
                         }
                     }
@@ -92,6 +96,8 @@ public class Schulze extends Methode {
 
         for(int i = 0 ; i < r.getNbCandidats() ; i++) {
             for(int j = 0 ; j < r.getNbCandidats() ; j++) {
+                //Si i gagne son duel sur j, on augmente le nombre de duels gagnés par i
+                //Sinon, l'incrémentation se fera quand les valeurs des variables de boucle seront inversées
                 if(p[i][j] > p[j][i]) {
                     nbDuelsGagnes[i] += 1.0;
                 }

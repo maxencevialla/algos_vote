@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        Urne r = new Urne(4, 250);
+        Urne r = new Urne(8, 25000);
         //r.forceOne();
 
         Resultats.getInstance().calculeResultats(r);
