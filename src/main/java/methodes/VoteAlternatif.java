@@ -80,8 +80,10 @@ public class VoteAlternatif extends Methode {
 
         }
 
-        //TODO insérer les candidats non éliminés en tête du classement final, dans l'ordre
-        classementFinal.add(0, classement.get(0));
+        //s'il n'y a pas eu d'égalité, on doit rajouter le candidat qui n'a jamais été éliminé (le gagnant) en tête du classement final
+        if(!classementFinal.contains(classement.get(0))) {
+            classementFinal.add(0, classement.get(0));
+        }
 
 
         /*System.out.println("Classement final : ");

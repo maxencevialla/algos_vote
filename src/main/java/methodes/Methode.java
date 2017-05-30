@@ -40,13 +40,15 @@ public abstract class Methode {
             return;
         }
 
-        System.out.println(res.getNomMethode() + " calculé en " + (System.currentTimeMillis() - start) + "ms.");
+        System.out.println(
+                res.getClassement().get(0) + " gagne via " +
+                res.getNomMethode() + " (calculé en " + (System.currentTimeMillis() - start) + "ms)");
 
-        for(int i = 0 ; i < res.getClassement().size() ; i++) {
+       /* for(int i = 0 ; i < res.getClassement().size() ; i++) {
             System.out.print(res.getClassement().get(i) + " ");
         }
 
-        System.out.println();
+        System.out.println();*/
     }
 
     /**

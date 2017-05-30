@@ -17,13 +17,16 @@ public class ClassementParametrable extends Methode {
 
     private Function<ArrayList<Byte>, Double> param;
 
+    private String nomMethode;
+
     private ClassementParametrable() {
         super();
     }
 
-    public ClassementParametrable(Function<ArrayList<Byte>, Double> myParam) {
+    public ClassementParametrable(Function<ArrayList<Byte>, Double> myParam, String nomMethode) {
         this();
         this.param = myParam;
+        this.nomMethode = nomMethode;
     }
 
     @Override
@@ -48,6 +51,6 @@ public class ClassementParametrable extends Methode {
         //On travaille sur des valeurs agrégées de classement, on veut donc les classer du plus petit au plus grand
         Collections.reverse(classement);
 
-        return new Resultat(classement, ClassementParametrable.class.getSimpleName());
+        return new Resultat(classement, ClassementParametrable.class.getSimpleName() + "_" + this.nomMethode);
     }
 }

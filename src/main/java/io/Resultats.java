@@ -47,13 +47,19 @@ public class Resultats {
             return x.get(x.size()/2).doubleValue();
         };
 
+        Function<ArrayList<Byte>, Double> orderFunction = x -> {
+          Collections.sort(x);
+          return x.get(x.size()/10).doubleValue();
+        };
+
         Methode[] methodes = {
                 UninomUnTour.getInstance(),
                 UninomDeuxTours.getInstance(),
                 Borda.getInstance(),
                 VoteAlternatif.getInstance(),
-                new ClassementParametrable(moyenne),
-                new ClassementParametrable(mediane)
+                new ClassementParametrable(moyenne, "moyenne"),
+                new ClassementParametrable(mediane, "mediane"),
+                new ClassementParametrable(orderFunction, "orderFunction")
         };
 
         for(Methode m : methodes) {

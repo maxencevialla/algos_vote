@@ -9,7 +9,8 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        Urne r = new Urne(4, 1000);
+        Urne r = new Urne(2, 1000);
+        r.forceOne();
 
         Resultats.getInstance().calculeResultats(r);
 

@@ -56,6 +56,17 @@ public class Urne {
     }
 
     /**
+     * Force le candidat en première place à être gagnant sur la moitié des bulletins dans l'urne courante
+     */
+    public void forceOne() {
+        for(int i = 0 ; i < this.nbVotants ; i+=2) {
+            int toSwitch = this.getVotes().get(i).indexOf((byte)1);
+            this.getVotes().get(i).set(toSwitch, this.getVotes().get(i).get(0));
+            this.getVotes().get(i).set(0, (byte)1);
+        }
+    }
+
+    /**
      *
      * @param votes : contient tous les bulletins à traiter
      *              Chaque arraylist "interne" contient l'ordre des choix d'un votant
