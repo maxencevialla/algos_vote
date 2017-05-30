@@ -1,6 +1,7 @@
 import io.Resultat;
 import io.Urne;
 import io.Resultats;
+import methodes.Schulze;
 
 /**
  * Created by maxence on 12/05/17.
@@ -9,8 +10,8 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        Urne r = new Urne(2, 1000);
-        r.forceOne();
+        Urne r = new Urne(4, 250);
+        //r.forceOne();
 
         Resultats.getInstance().calculeResultats(r);
 

@@ -47,6 +47,9 @@ public class Resultats {
             return x.get(x.size()/2).doubleValue();
         };
 
+        /**
+         * Problème actuel : on a très souvent une égalité même si le vote est biaisé lorsque le nombre de candidat est faible
+         */
         Function<ArrayList<Byte>, Double> orderFunction = x -> {
           Collections.sort(x);
           return x.get(x.size()/10).doubleValue();
@@ -57,6 +60,7 @@ public class Resultats {
                 UninomDeuxTours.getInstance(),
                 Borda.getInstance(),
                 VoteAlternatif.getInstance(),
+                Schulze.getInstance(),
                 new ClassementParametrable(moyenne, "moyenne"),
                 new ClassementParametrable(mediane, "mediane"),
                 new ClassementParametrable(orderFunction, "orderFunction")
