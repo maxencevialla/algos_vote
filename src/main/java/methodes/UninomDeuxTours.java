@@ -55,7 +55,8 @@ public class UninomDeuxTours extends Methode {
             classementSecondTour.set(1, premier);
         }
 
-        Resultat resultat = new Resultat(classementSecondTour, UninomDeuxTours.class.getSimpleName());
+        Resultat resultat = new Resultat(classementSecondTour, res.getEgalites());
+        resultat.setNomMethode(UninomDeuxTours.class.getSimpleName());
 
         return resultat;
     }

@@ -108,7 +108,9 @@ public class Schulze extends Methode {
             System.out.print(nbDuelsGagnes[i] + " ");
         }
         System.out.println();*/
+        Resultat res = genereResultatParScore(nbDuelsGagnes);
+        res.setNomMethode(Schulze.class.getSimpleName());
 
-        return new Resultat(classeParScore(nbDuelsGagnes), Schulze.class.getSimpleName());
+        return res;
     }
 }

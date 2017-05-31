@@ -57,7 +57,7 @@ public abstract class Methode {
      * @return classement des candidats
      */
     //TODO gérer l'influence sur l'égalité si un des candidats à égalité doit être privilégié
-    public List<Byte> classeParScore(Double[] scores) {
+   public List<Byte> classeParScore(Double[] scores) {
         List<Double> s = Arrays.asList(scores);
         List<Byte> r = new ArrayList<>();
         int i;
@@ -70,6 +70,64 @@ public abstract class Methode {
         return r;
     }
 
+
+    public Resultat genereResultatParScore(Double[] scores) {
+        List<Byte> classement = new ArrayList<>();
+        Set<Set<Byte>> egalites = new HashSet<>();
+
+        System.out.print("Scores : ");
+        for(int a = 0 ; a < scores.length ; a++) {
+            System.out.print(scores[a] + " ");
+        }
+        System.out.println();
+
+        double scoreCourant;
+        Set<Byte> setCourant;
+
+        //On recherche les égalités et on remplit la liste de set
+        for(int i = 0 ; i < scores.length ; i++) {
+            scoreCourant = scores[i];
+            setCourant = new HashSet<>();
+
+            //Recherche des candidats ayant le même score que i
+            for(int j = 0 ; j < scores.length ; j++) {
+                //Le set ne permet pas la présence de doublons, donc pas de risque d'ajouter plusieurs fois le même candidat
+                if(scores[j] == scoreCourant && j != i) {
+                    setCourant.add((byte)i); //On traite les candidats à égalité avec i
+                    setCourant.add((byte)j);
+                }
+            }
+            //Le set ne permet pas la présence de doublons, donc pas de risque d'avoir 2 sets identiques dans egalites
+            if(!setCourant.isEmpty() && setCourant != null) {
+                egalites.add(setCourant);
+            }
+        }
+
+        int k;
+        List<Double> s = Arrays.asList(scores);
+
+        while(Collections.max(s) > -1) {
+            k = s.indexOf(Collections.max(s));
+            classement.add((byte)k);
+            s.set(k, -1.0);
+        }
+
+
+        System.out.print("Egalités : ");
+        if(!egalites.isEmpty() && egalites != null) {
+            for (Set<Byte> mySet : egalites) {
+                System.out.print("(");
+                for (Byte b : mySet) {
+                    System.out.print(b + " ");
+                }
+                System.out.print(") ");
+            }
+        }
+        System.out.println();
+
+        return new Resultat(classement, egalites);
+    }
+
     /**
      *
      * @param scores : score de chaque candidat, la place dans le tableau représentant le numéro de chaque candidat
@@ -77,8 +135,6 @@ public abstract class Methode {
      */
     @Deprecated
     public List<Byte> oldclasseParScore(Double[] scores) throws EgaliteException {
-        //TODO faire le classement plus proprement en codant une vraie méthode de tri à la place de la TreeMap...
-        //TODO s'aider de Urne.getCandidatPrefere() pour gérer les égalités
         Map<Double, Byte> mapClassement = new TreeMap<>(Collections.reverseOrder());
 
 
@@ -87,10 +143,8 @@ public abstract class Methode {
                 mapClassement.put(scores[i], i);
             } else {
                 /**  GERER LES EGALITES PLUS PROPREMENT **/
-                mapClassement.put(scores[i]*1.001*i, i); //On modifie arbitrairement le score du candidat i pour pouvoir le placer dans la map
-                //TODO l'idéal serait d'informer l'appelant d'une égalité sans interrompre l'exécution
-                //TODO pour le moment, on ne renvoit pas d'exception et on "cache" les égalités
-
+                mapClassement.put(scores[i]*1.001*i, i);
+                //On modifie arbitrairement le score du candidat i pour pouvoir le placer dans la map
                 //throw new EgaliteException("Egalité entre candidats " + i + " et " + mapClassement.get(scores[i]));
             }
 

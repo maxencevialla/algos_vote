@@ -46,11 +46,13 @@ public class ClassementParametrable extends Methode {
             classementMoyen[i] = param.apply(classementCandidatCourant);
         }
 
-        List<Byte> classement = classeParScore(classementMoyen);
+        Resultat res = genereResultatParScore(classementMoyen);
 
         //On travaille sur des valeurs agrégées de classement, on veut donc les classer du plus petit au plus grand
-        Collections.reverse(classement);
+        Collections.reverse(res.getClassement());
 
-        return new Resultat(classement, ClassementParametrable.class.getSimpleName() + "_" + this.nomMethode);
+        res.setNomMethode(ClassementParametrable.class.getSimpleName() + "_" + this.nomMethode);
+
+        return res;
     }
 }

@@ -63,13 +63,12 @@ public class VoteAlternatif extends Methode {
             //System.out.println();
 
             //mise à jour du classement et détermination du candidat à éliminer
+            //TODO : gèrer les égalités
             classement = classeParScore(nbVotes);
 
             /*for(Byte b : classement) {
                 System.out.print(b + " ");
             }*/
-
-            //TODO pb actuel : on élimine le candidat qui a le moins de vote, soit généralement quelqu'un de déjà éliminé....
 
             numCandidatElimine = classement.get(classement.size()-classementFinal.size()-1);
             if(!classementFinal.contains(numCandidatElimine)) {

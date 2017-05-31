@@ -1,6 +1,7 @@
 package io;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by maxence on 12/05/17.
@@ -13,10 +14,17 @@ public class Resultat {
 
     private List<Byte> classement; //Représente le classement des candidats, chacun étant représenté par son numéro dans l'entrée Urne
     private String nomMethode; //Méthode de vote utilisée pour réaliser ce classement
+    private Set<Set<Byte>> egalites; //Représente tous les groupes de candidats étant à égalité entre eux
 
     public Resultat(List<Byte> classement, String nomMethode) {
         this.classement = classement;
         this.nomMethode = nomMethode;
+    }
+
+    public Resultat(List<Byte> classement, Set<Set<Byte>> egalites) {
+        this.classement = classement;
+        this.nomMethode = nomMethode;
+        this.egalites = egalites;
     }
 
     @Override
@@ -28,7 +36,7 @@ public class Resultat {
         return classement;
     }
 
-    private void setClassement(List<Byte> classement) {
+    public void setClassement(List<Byte> classement) {
         this.classement = classement;
     }
 
@@ -36,7 +44,15 @@ public class Resultat {
         return nomMethode;
     }
 
-    private void setNomMethode(String nomMethode) {
+    public void setNomMethode(String nomMethode) {
         this.nomMethode = nomMethode;
+    }
+
+    public Set<Set<Byte>> getEgalites() {
+        return egalites;
+    }
+
+    private void setEgalites(Set<Set<Byte>> egalites) {
+        this.egalites = egalites;
     }
 }

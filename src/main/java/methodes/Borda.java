@@ -39,7 +39,10 @@ public class Borda extends Methode {
             }
         }
 
-        return new Resultat(classeParScore(nbVoix), Borda.class.getSimpleName());
+        Resultat resultat = genereResultatParScore(nbVoix);
+        resultat.setNomMethode(Borda.class.getSimpleName());
+
+        return resultat;
     }
 
 }
