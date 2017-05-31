@@ -23,6 +23,7 @@ public class Urne {
 
     private Urne() {
         this.votes = new ArrayList<ArrayList<Byte>>();
+        this.numCandidatPref = -1;
     }
 
     /**
@@ -72,9 +73,30 @@ public class Urne {
      *              Chaque arraylist "interne" contient l'ordre des choix d'un votant
      * @throws MauvaiseUrneException : renvoit une exception si la stucture de l'array votes n'est pas celle attendue
      */
+    @Deprecated
+    /**
+     * Utiliser le constructeur Urne(ArrayList<ArrayList<Byte>> votes, int numCandidatPref) à la place afin d'indiquer le candidat préféré
+     */
     public Urne(ArrayList<ArrayList<Byte>> votes) throws MauvaiseUrneException {
         this();
         this.votes = votes;
+
+        this.nbVotants = votes.size();
+        this.nbCandidats = votes.get(0).size();
+
+        this.checkStructure();
+    }
+
+    /**
+     *
+     * @param votes : contient tous les bulletins à traiter
+     *              Chaque arraylist "interne" contient l'ordre des choix d'un votant
+     * @throws MauvaiseUrneException : renvoit une exception si la stucture de l'array votes n'est pas celle attendue
+     */
+    public Urne(ArrayList<ArrayList<Byte>> votes, int numCandidatPref) throws MauvaiseUrneException {
+        this();
+        this.votes = votes;
+        this.numCandidatPref = numCandidatPref;
 
         this.nbVotants = votes.size();
         this.nbCandidats = votes.get(0).size();

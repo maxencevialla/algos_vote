@@ -40,8 +40,16 @@ public abstract class Methode {
             return;
         }
 
+        byte vainqueur = res.getClassement().get(0);
+
+        String egalite = " ";
+
+        if(res.premierEgalite) {
+            egalite = " (Egalité) ";
+        }
+
         System.out.println(
-                res.getClassement().get(0) + " gagne via " +
+                vainqueur + " gagne" + egalite + "via " +
                 res.getNomMethode() + " (calculé en " + (System.currentTimeMillis() - start) + "ms)");
 
        /* for(int i = 0 ; i < res.getClassement().size() ; i++) {
@@ -56,7 +64,6 @@ public abstract class Methode {
      * @param scores : score POSITIF OU NUL de chaque candidat, la place dans le tableau représentant le numéro de chaque candidat
      * @return classement des candidats
      */
-    //TODO gérer l'influence sur l'égalité si un des candidats à égalité doit être privilégié
    public List<Byte> classeParScore(Double[] scores) {
         List<Double> s = Arrays.asList(scores);
         List<Byte> r = new ArrayList<>();
@@ -75,11 +82,11 @@ public abstract class Methode {
         List<Byte> classement = new ArrayList<>();
         Set<Set<Byte>> egalites = new HashSet<>();
 
-        System.out.print("Scores : ");
+        /*System.out.print("Scores : ");
         for(int a = 0 ; a < scores.length ; a++) {
             System.out.print(scores[a] + " ");
         }
-        System.out.println();
+        System.out.println();*/
 
         double scoreCourant;
         Set<Byte> setCourant;
@@ -113,7 +120,7 @@ public abstract class Methode {
         }
 
 
-        System.out.print("Egalités : ");
+        /*System.out.print("Egalités : ");
         if(!egalites.isEmpty() && egalites != null) {
             for (Set<Byte> mySet : egalites) {
                 System.out.print("(");
@@ -123,40 +130,32 @@ public abstract class Methode {
                 System.out.print(") ");
             }
         }
-        System.out.println();
+        System.out.println();*/
 
-        return new Resultat(classement, egalites);
+        Resultat resultat = new Resultat(classement, egalites);
+
+        majPremierEgalite(resultat);
+
+        return resultat;
     }
 
     /**
-     *
-     * @param scores : score de chaque candidat, la place dans le tableau représentant le numéro de chaque candidat
-     * @return classement des candidats
+     * Met à jour la variable du résultat indiquant si le premier candidat est sujet à égalité
+     * @param res
      */
-    @Deprecated
-    public List<Byte> oldclasseParScore(Double[] scores) throws EgaliteException {
-        Map<Double, Byte> mapClassement = new TreeMap<>(Collections.reverseOrder());
+    public void majPremierEgalite(Resultat res) {
 
+        byte vainqueur = res.getClassement().get(0);
 
-        for(byte i = 0 ; i < scores.length ; i++) {
-            if(!mapClassement.containsKey(scores[i])) {
-                mapClassement.put(scores[i], i);
-            } else {
-                /**  GERER LES EGALITES PLUS PROPREMENT **/
-                mapClassement.put(scores[i]*1.001*i, i);
-                //On modifie arbitrairement le score du candidat i pour pouvoir le placer dans la map
-                //throw new EgaliteException("Egalité entre candidats " + i + " et " + mapClassement.get(scores[i]));
+        //On regarde si le premier candidat apparaît dans un set d'égalités
+        if(res.getEgalites() != null) {
+            for(Set<Byte> s : res.getEgalites()) {
+                if(s.contains(vainqueur)) {
+                    res.premierEgalite = true;
+                }
             }
-
         }
 
-        List<Byte> resultList = new ArrayList<>();
-
-        for(Double d : mapClassement.keySet()) {
-            resultList.add(mapClassement.get(d));
-        }
-
-        return resultList;
     }
 
 }
