@@ -37,7 +37,7 @@ public class UninomUnTour extends Methode {
             premieresPlaces[r.getVotes().get(i).indexOf((byte)1)]++;
         }
 
-        Resultat res = genereResultatParScore(premieresPlaces);
+        Resultat res = genereResultatParScore(r.getNumCandidatPref(), premieresPlaces);
         res.setNomMethode(UninomUnTour.class.getSimpleName());
 
         return res;

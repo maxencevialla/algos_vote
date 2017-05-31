@@ -78,7 +78,7 @@ public abstract class Methode {
     }
 
 
-    public Resultat genereResultatParScore(Double[] scores) {
+    public Resultat genereResultatParScore(byte numCandidatPref, Double[] scores) {
         List<Byte> classement = new ArrayList<>();
         Set<Set<Byte>> egalites = new HashSet<>();
 
@@ -134,7 +134,7 @@ public abstract class Methode {
 
         Resultat resultat = new Resultat(classement, egalites);
 
-        majPremierEgalite(resultat);
+        majPremierEgalite(numCandidatPref, resultat);
 
         return resultat;
     }
@@ -143,7 +143,7 @@ public abstract class Methode {
      * Met à jour la variable du résultat indiquant si le premier candidat est sujet à égalité
      * @param res
      */
-    public void majPremierEgalite(Resultat res) {
+    public void majPremierEgalite(byte numCandidatPref, Resultat res) {
 
         byte vainqueur = res.getClassement().get(0);
 
@@ -155,6 +155,63 @@ public abstract class Methode {
                 }
             }
         }
+
+        deplacePremier(numCandidatPref, res);
+
+    }
+
+    /**
+     * Permet de placer le candidat souhaité en première position si ce dernier fait partie d'une égalité à la première place
+     * @param numCandidatPref
+     * @param res
+     */
+    public void deplacePremier(byte numCandidatPref, Resultat res) {
+        //Impossible de travailler si on ne connait pas le candidat préféré ou s'il n'est pas dans l'inégalité de tête
+        if(numCandidatPref == -1 || !res.premierEgalite) { return; }
+
+        Set<Byte> mySet = null;
+
+        //Recherche du set d'égalité contenant le vainqueur
+        if(res.getEgalites() != null) {
+            for (Set<Byte> s : res.getEgalites()) {
+                //Si le set d'égalité contient le vainqueur et le candidat souhaité vainqueur
+                if (s.contains(numCandidatPref) && s.contains(res.getClassement().get(0))) {
+                    mySet = s;
+                }
+            }
+        }
+
+        //Rien à faire si le candidat souhaité vainqueur n'est pas dans la liste d'égalités
+        if(mySet == null) { return; }
+
+        List<Byte> newClassement = res.getClassement();
+
+        System.out.print("Classement avant modif : ");
+        for(byte b : newClassement) {
+            System.out.print(b + " ");
+        }
+        System.out.println();
+
+        System.out.print("Set d'égalité de tête : ");
+        for(Byte b :mySet) {
+            System.out.print(b + " ");
+        }
+        System.out.println();
+
+        //Si le candidat souhaité n'est pas en première place,
+        // on l'échange avec le candidat du set situé en dernière place dans le classement
+        if(numCandidatPref != res.getClassement().get(0)) {
+            newClassement.set(res.getClassement().indexOf(numCandidatPref), res.getClassement().get(0));
+            newClassement.set(0, numCandidatPref);
+        }
+
+        System.out.print("Classement après modif : ");
+        for(byte b : newClassement) {
+            System.out.print(b + " ");
+        }
+        System.out.println();
+
+        res.setClassement(newClassement);
 
     }
 

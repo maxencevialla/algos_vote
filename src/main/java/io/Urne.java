@@ -19,7 +19,7 @@ public class Urne {
     private ArrayList<ArrayList<Byte>> votes;
     private int nbCandidats;
     private int nbVotants;
-    private int numCandidatPref;
+    private byte numCandidatPref;
 
     private Urne() {
         this.votes = new ArrayList<ArrayList<Byte>>();
@@ -93,7 +93,7 @@ public class Urne {
      *              Chaque arraylist "interne" contient l'ordre des choix d'un votant
      * @throws MauvaiseUrneException : renvoit une exception si la stucture de l'array votes n'est pas celle attendue
      */
-    public Urne(ArrayList<ArrayList<Byte>> votes, int numCandidatPref) throws MauvaiseUrneException {
+    public Urne(ArrayList<ArrayList<Byte>> votes, byte numCandidatPref) throws MauvaiseUrneException {
         this();
         this.votes = votes;
         this.numCandidatPref = numCandidatPref;
@@ -151,7 +151,7 @@ public class Urne {
         this.nbVotants = nbVotants;
     }
 
-    public int getNumCandidatPref() { return numCandidatPref; }
+    public byte getNumCandidatPref() { return numCandidatPref; }
 
-    private void setNumCandidatPref(int numCandidatPref) { this.numCandidatPref = numCandidatPref; }
+    public void setNumCandidatPref(byte numCandidatPref) { this.numCandidatPref = numCandidatPref; }
 }

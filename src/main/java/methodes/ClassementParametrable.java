@@ -46,10 +46,15 @@ public class ClassementParametrable extends Methode {
             classementMoyen[i] = param.apply(classementCandidatCourant);
         }
 
-        Resultat res = genereResultatParScore(classementMoyen);
+        //Les fonctions de la classe Méthode travaillent en plaçant le score le plus haut en premier
+        //Ici, on travaille sur un classement, dont on cherche à minimiser la valeur
+        //On choisit donc de remplacer chaque classement par son inverse, ce qui permet d'inverser le classement en conservant l'ordre
+        //On cherche alors à maximiser ses inverses
+        for(int i = 0 ; i < classementMoyen.length ; i++) {
+            classementMoyen[i] = 1/classementMoyen[i];
+        }
 
-        //On travaille sur des valeurs agrégées de classement, on veut donc les classer du plus petit au plus grand
-        Collections.reverse(res.getClassement());
+        Resultat res = genereResultatParScore(r.getNumCandidatPref(), classementMoyen);
 
         res.setNomMethode(ClassementParametrable.class.getSimpleName() + "_" + this.nomMethode);
 
