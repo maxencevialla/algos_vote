@@ -15,7 +15,7 @@ public class Resultat {
     private List<Byte> classement; //Représente le classement des candidats, chacun étant représenté par son numéro dans l'entrée Urne
     private String nomMethode; //Méthode de vote utilisée pour réaliser ce classement
     private Set<Set<Byte>> egalites; //Représente tous les groupes de candidats étant à égalité entre eux
-    public boolean premierEgalite;
+    public boolean premierEgalite; //Permet de savoir si le premier du classement est issu d'une égalité
 
     public Resultat() {
         premierEgalite = false;

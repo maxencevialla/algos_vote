@@ -69,14 +69,14 @@ public class Urne {
 
     /**
      *
+     * Déprécié : Utiliser le constructeur Urne(ArrayList<ArrayList<Byte>> votes, int numCandidatPref)
+     * à la place afin d'indiquer le candidat préféré
+     *
      * @param votes : contient tous les bulletins à traiter
      *              Chaque arraylist "interne" contient l'ordre des choix d'un votant
      * @throws MauvaiseUrneException : renvoit une exception si la stucture de l'array votes n'est pas celle attendue
      */
     @Deprecated
-    /**
-     * Utiliser le constructeur Urne(ArrayList<ArrayList<Byte>> votes, int numCandidatPref) à la place afin d'indiquer le candidat préféré
-     */
     public Urne(ArrayList<ArrayList<Byte>> votes) throws MauvaiseUrneException {
         this();
         this.votes = votes;

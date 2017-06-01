@@ -12,6 +12,8 @@ import java.util.function.Function;
 
 /**
  * Created by maxence on 16/05/17.
+ *
+ * Contient une liste de Resultat représentant chacun le résultat d'un sondage selon une méthode de vote particulière
  */
 public class Resultats {
     private List<Resultat> mesResultats;
@@ -24,16 +26,20 @@ public class Resultats {
     }
 
     private Resultats() {
-        mesResultats = new ArrayList<Resultat>();
-        bonVainqueurTrouve = false;
+        this.mesResultats = new ArrayList<Resultat>();
+        this.bonVainqueurTrouve = false;
     }
 
     /**
-     * Lance chaque méthode de vote disponible sur le paramètre et ajoute le Résultat à l'attributs mesResultats
+     * Lance chaque méthode de vote disponible sur l'urne d'entrée et ajoute le Résultat à l'attributs mesResultats
      *
      * @param r : Données de votes à traiter
      */
     public void calculeResultats(Urne r) throws WrongCandidateNumberException, EgaliteException {
+        purgeResultats(); //Evite d'ajouter les résultats courants à des résultats pré-existants
+
+        //Déclaration des fonctions utilisées pour la méthode de vote ClassementParamètrable
+
         Function<ArrayList<Byte>, Double> moyenne = x -> {
             double d = 0;
             for(Byte b : x) {
@@ -49,6 +55,7 @@ public class Resultats {
 
         /**
          * Problème actuel : on a très souvent une égalité même si le vote est biaisé lorsque le nombre de candidat est faible
+         * Inhérent aux order functions ?
          */
         Function<ArrayList<Byte>, Double> orderFunction = x -> {
           Collections.sort(x);
@@ -67,9 +74,19 @@ public class Resultats {
         };
 
         for(Methode m : methodes) {
+            //TODO : traiter les résultats manuellement, on ne s'intéresse plus aux temps de calcul
             //mesResultats.add(m.getResult(r));
             m.printAndTimeResult(r);
         }
+    }
+
+    /**
+     * Permet de vider le contenu de la liste de résultats entre chaque calcul,
+     * Il n'est pas nécessaire de réaliser la purge manuellement.
+     */
+    public void purgeResultats() {
+        this.mesResultats = new ArrayList<>();
+        this.bonVainqueurTrouve = false;
     }
 
     public List<Resultat> getMesResultats() {
