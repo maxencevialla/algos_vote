@@ -2,6 +2,7 @@ package io;
 
 import exceptions.mauvaisesUrnesException.ClassementInvalideException;
 import exceptions.mauvaisesUrnesException.LongueurDeLigneIncorrecteException;
+import exceptions.mauvaisesUrnesException.MauvaisCandidatPrefException;
 import exceptions.mauvaisesUrnesException.MauvaiseUrneException;
 
 import java.util.ArrayList;
@@ -153,5 +154,10 @@ public class Urne {
 
     public byte getNumCandidatPref() { return numCandidatPref; }
 
-    public void setNumCandidatPref(byte numCandidatPref) { this.numCandidatPref = numCandidatPref; }
+    public void setNumCandidatPref(byte numCandidatPref) throws MauvaiseUrneException {
+        if(numCandidatPref >= this.nbCandidats || numCandidatPref < 0) {
+            throw new MauvaisCandidatPrefException("Le candidat préféré doit avoir un numéro compris entre 0 et "
+            + (this.nbCandidats-1) + " (Actuel : " + numCandidatPref + ")");
+        }
+        this.numCandidatPref = numCandidatPref; }
 }

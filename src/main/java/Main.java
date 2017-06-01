@@ -2,6 +2,7 @@ import io.Resultat;
 import io.Urne;
 import io.Resultats;
 
+import java.util.Arrays;
 import java.util.logging.LogManager;
 
 /**
@@ -13,8 +14,8 @@ public class Main {
 
         //LogManager.getLogManager().reset();
 
-        Urne r = new Urne(3, 25);
-        r.setNumCandidatPref((byte)2);
+        Urne r = new Urne(15, 2500);
+        r.setNumCandidatPref((byte)5);
         //r.forceOne();
 
 
@@ -22,6 +23,9 @@ public class Main {
 
         for(Resultat res : Resultats.getInstance().getMesResultats()) {
             System.out.println(res);
+            System.out.println("Classement complet avec " + res.getNomMethode()
+                    + " : " + Arrays.toString(res.getClassement().toArray()));
+            System.out.println();
         }
     }
 }
