@@ -6,11 +6,14 @@ import io.Urne;
 import io.Resultat;
 
 import java.util.*;
+import java.util.logging.Logger;
 
 /**
  * Created by maxence on 15/05/17.
  */
 public abstract class Methode {
+
+    private static final Logger LOGGER = Logger.getLogger(Methode.class.getName());
 
     public abstract Resultat getResult(Urne r) throws WrongCandidateNumberException, EgaliteException;
 
@@ -51,12 +54,6 @@ public abstract class Methode {
         System.out.println(
                 vainqueur + " gagne" + egalite + "via " +
                 res.getNomMethode() + " (calculé en " + (System.currentTimeMillis() - start) + "ms)");
-
-       /* for(int i = 0 ; i < res.getClassement().size() ; i++) {
-            System.out.print(res.getClassement().get(i) + " ");
-        }
-
-        System.out.println();*/
     }
 
     /**
@@ -82,11 +79,7 @@ public abstract class Methode {
         List<Byte> classement = new ArrayList<>();
         Set<Set<Byte>> egalites = new HashSet<>();
 
-        /*System.out.print("Scores : ");
-        for(int a = 0 ; a < scores.length ; a++) {
-            System.out.print(scores[a] + " ");
-        }
-        System.out.println();*/
+        //LOGGER.info("Scores : " + Arrays.toString(scores));
 
         double scoreCourant;
         Set<Byte> setCourant;
@@ -119,18 +112,11 @@ public abstract class Methode {
             s.set(k, -1.0);
         }
 
-
-        /*System.out.print("Egalités : ");
-        if(!egalites.isEmpty() && egalites != null) {
+        /*if(!egalites.isEmpty() && egalites != null) {
             for (Set<Byte> mySet : egalites) {
-                System.out.print("(");
-                for (Byte b : mySet) {
-                    System.out.print(b + " ");
-                }
-                System.out.print(") ");
+                LOGGER.info("Set d'égalités : " + Arrays.toString(mySet.toArray()));
             }
-        }
-        System.out.println();*/
+        }*/
 
         Resultat resultat = new Resultat(classement, egalites);
 
@@ -186,17 +172,8 @@ public abstract class Methode {
 
         List<Byte> newClassement = res.getClassement();
 
-        System.out.print("Classement avant modif : ");
-        for(byte b : newClassement) {
-            System.out.print(b + " ");
-        }
-        System.out.println();
-
-        System.out.print("Set d'égalité de tête : ");
-        for(Byte b :mySet) {
-            System.out.print(b + " ");
-        }
-        System.out.println();
+        //LOGGER.info("Classement avant modif : " + Arrays.toString(newClassement.toArray()));
+        //LOGGER.info("Set d'égalité de tête : " + Arrays.toString(mySet.toArray()));
 
         //Si le candidat souhaité n'est pas en première place,
         // on l'échange avec le candidat du set situé en dernière place dans le classement
@@ -205,11 +182,7 @@ public abstract class Methode {
             newClassement.set(0, numCandidatPref);
         }
 
-        System.out.print("Classement après modif : ");
-        for(byte b : newClassement) {
-            System.out.print(b + " ");
-        }
-        System.out.println();
+        //LOGGER.info("Classement après modif : " + Arrays.toString(newClassement.toArray()));
 
         res.setClassement(newClassement);
 

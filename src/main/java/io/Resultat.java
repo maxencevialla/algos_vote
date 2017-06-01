@@ -37,7 +37,10 @@ public class Resultat {
 
     @Override
     public String toString() {
-        return "Numéro du vainqueur : " + this.classement.get(0) + " avec méthode " + this.nomMethode;
+
+        String egalite = this.premierEgalite ? " (Egalité) " : " ";
+
+        return "Numéro du vainqueur" + egalite + ": " + this.classement.get(0) + " avec méthode " + this.nomMethode;
     }
 
     public List<Byte> getClassement() {

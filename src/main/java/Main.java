@@ -2,6 +2,8 @@ import io.Resultat;
 import io.Urne;
 import io.Resultats;
 
+import java.util.logging.LogManager;
+
 /**
  * Created by maxence on 12/05/17.
  */
@@ -9,9 +11,11 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
+        //LogManager.getLogManager().reset();
+
         Urne r = new Urne(3, 25);
         r.setNumCandidatPref((byte)2);
-        r.forceOne();
+        //r.forceOne();
 
 
         Resultats.getInstance().calculeResultats(r);

@@ -74,9 +74,7 @@ public class Resultats {
         };
 
         for(Methode m : methodes) {
-            //TODO : traiter les résultats manuellement, on ne s'intéresse plus aux temps de calcul
-            //mesResultats.add(m.getResult(r));
-            m.printAndTimeResult(r);
+            mesResultats.add(m.getResult(r));
         }
     }
 
