@@ -121,7 +121,7 @@ public class Urne {
                 throw new LongueurDeLigneIncorrecteException("Longueur de ligne " + i + " non valide.");
             }
             for(int j = 0 ; j < nbCandidats ; j++) {
-                if(this.getVotes().get(i).indexOf(j+1) == -1) {
+                if(this.getVotes().get(i).indexOf((byte)(j+1)) == -1) {
                     throw new ClassementInvalideException("Classement de la ligne " + i + " non valide.");
                 }
             }
